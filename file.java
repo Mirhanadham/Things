@@ -1,4 +1,6 @@
 package sw;
+
+import java.io.Serializable;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -7,18 +9,21 @@ import java.io.File;
 import java.io.FileReader;
 
 public class file {
-	static String sourcedir = System.getProperty("C:\\Users\\lenovo\\Desktop\\Admin.txt");
+	
 
 	
-		 public static void WriteObjectToFile(String path,Object serObj) {
+		 public static void WriteObjectToFile(String path,PersonalInfo serObj) {
 			 
 		        try {
 		       // PersonalInfo obj=new PersonalInfo(obj.getName(),obj.getPassword(),obj.getEmail(),obj.getGender(),obj.getAge());
 		        		
 		            FileOutputStream fileOut = new FileOutputStream(path);
+
 		            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+		       
 		            objectOut.writeObject(serObj);
 		            objectOut.close();
+		            fileOut.close();
 		            System.out.println("The Object  was succesfully written to a file");
 		 
 		        } catch (Exception ex) {

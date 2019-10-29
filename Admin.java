@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Admin extends PersonalInfo implements Ilogin , IRegister {
 	
-	public static String sourcedir = System.getProperty("C:\\Users\\lenovo\\Desktop\\StoreOwner.txt");
+	public static String sourcedir = "C:\\Users\\lenovo\\Desktop\\Admin.txt";
 	
 	public static void login (String username,String password) throws IOException
 	{

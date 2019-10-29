@@ -9,15 +9,15 @@ import java.io.Serializable;
 
 public class User extends PersonalInfo implements Ilogin , IRegister {
 
-	static String sourcedir = System.getProperty("C:\\Users\\lenovo\\Desktop\\User.txt");
+	static String source = "C:\\Users\\lenovo\\Desktop\\User.txt";
 	static PersonalInfo personalobject= new PersonalInfo();
 	public static void login (String username,String password) throws IOException
 	{
 		boolean N;
 		boolean P;
 
-		N=file.find(sourcedir,username);
-		P=file.find(sourcedir,password);
+		N=file.find(source,username);
+		P=file.find(source,password);
 	
 		if ((N==true)&&(P==true))
 				System.out.println("you have been logged in successfull");
@@ -84,7 +84,7 @@ System.out.println("Please enter your username");
         		 
         		
          
-        file.WriteObjectToFile(sourcedir,personal);
+        file.WriteObjectToFile(source,personal);
 
 	}
 }

@@ -2,7 +2,7 @@ package sw;
 
 import java.io.Serializable;
 
-public class PersonalInfo {
+public class PersonalInfo implements Serializable{
 	
     private String name;
 	private String password;

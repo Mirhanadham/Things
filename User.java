@@ -81,7 +81,10 @@ System.out.println("Please enter your username");
          age = sc.nextInt();
        
          PersonalInfo personal=new PersonalInfo(name,pw,email,gender,age);
-        obj.WriteObjectToFile(personal);
+        		 
+        		
+         
+        file.WriteObjectToFile(sourcedir,personal);
 
 	}
 }

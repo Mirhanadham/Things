@@ -17,5 +17,48 @@ public class Main {
 		
 		//User.login(name, pw);
 		User.Registeration();
+		System.out.println("enter product to add.\n");
+
+		
+		
+
+
+		
+        
+        String name;
+		String category;
+		String description;
+		String brand;
+		double price;
+		Integer rate=0;
+		
+		Scanner sc = new Scanner(System.in); 
+		
+		
+		System.out.println("enter product name: ");
+		name=sc.nextLine();
+		System.out.println("enter brand name: ");
+		brand=sc.nextLine();
+		System.out.println("enter category: ");
+		category=sc.nextLine();
+		
+		System.out.println("enter description: ");
+		description=sc.nextLine();
+		
+		System.out.println("enter price: ");
+		price=sc.nextDouble();
+		
+		System.out.println("thanks\n");
+		
+		ProductSpec specs= new ProductSpec(name,price,brand,category,description,rate);
+		
+		Product product = new Product(specs);
+		
+		Inventory inventory= new Inventory();
+		
+		inventory.addToInventory(specs);
+		
+		
+	
 	}
 }

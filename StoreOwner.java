@@ -47,4 +47,40 @@ public class StoreOwner extends PersonalInfo implements Ilogin , IRegister  {
 
 		}
 	}
+
+	public static void Registeration() throws IOException {
+		
+	     file obj=new file(); 
+	System.out.println("Please enter your username");
+			String name;
+			Scanner sc = new Scanner(System.in); 
+			name= sc.nextLine(); 
+
+	    
+	        System.out.println("Enter your password");
+	        String pw;
+	        pw= sc.nextLine(); 
+	        
+	         System.out.println("Enter your Email");
+	        String email;
+			 email= sc.nextLine(); 
+
+	        
+	         System.out.println("Enter your Gender");
+	         String gender;
+	         gender = sc.nextLine(); 
+
+	        
+	         System.out.println("Enter your age");
+	         int age;
+	         age = sc.nextInt();
+	       
+	         PersonalInfo personal=new PersonalInfo(name,pw,email,gender,age);
+	        		 
+	        		
+	         
+	        file.WriteObjectToFile(sourcedir,personal);
+
+		}
+	
 }

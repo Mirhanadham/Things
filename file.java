@@ -1,23 +1,21 @@
 package sw;
-
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 
 public class file {
 	static String sourcedir = System.getProperty("C:\\Users\\lenovo\\Desktop\\Admin.txt");
 
 	
-		 public static void WriteObjectToFile(Object serObj) {
+		 public static void WriteObjectToFile(String path,Object serObj) {
 			 
 		        try {
-		 
-		            FileOutputStream fileOut = new FileOutputStream(sourcedir);
+		       // PersonalInfo obj=new PersonalInfo(obj.getName(),obj.getPassword(),obj.getEmail(),obj.getGender(),obj.getAge());
+		        		
+		            FileOutputStream fileOut = new FileOutputStream(path);
 		            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 		            objectOut.writeObject(serObj);
 		            objectOut.close();

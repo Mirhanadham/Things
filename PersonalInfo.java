@@ -1,5 +1,7 @@
 package sw;
 
+import java.io.Serializable;
+
 public class PersonalInfo {
 	
     private String name;
@@ -10,7 +12,7 @@ public class PersonalInfo {
 	
 	PersonalInfo(){
 	}
- 	public PersonalInfo(String N,String pw, String EM,  String G, int a){
+ 	public PersonalInfo(String N,String pw, String EM,  String G,int a){
 		this.name=N;
 		this.password=pw;
 		this.email=EM;
@@ -49,5 +51,11 @@ public class PersonalInfo {
 	}
 	
 
+	public String toString()
+	{
+		return new StringBuffer("Name: ").append(this.getName()).append("password: ").append(this.getPassword()).append("Email: ").append(this.getEmail()).append("category: ").append(this.getGender()).append("age:  ").append(this.getAge()).toString();
+	
+
+	}
 	
 }

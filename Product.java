@@ -1,29 +1,20 @@
-package sw;
+package project;
 
-import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
-public class Product implements Serializable{
-	private  ProductSpec spec;
+public class Product {
+	ProductSpec spec;
 	
-	
-	
-	public Product(ProductSpec specs)
+	public Product(ProductSpec spec)
 	{
-		this.spec=specs;
+		this.spec=spec;
 	}
-
-
-
-	public   ProductSpec getSpec() {
-		return spec;
+	public ProductSpec getSpec()
+	{
+		return this.spec;
 	}
-
-
-
-	public void setSpec(ProductSpec spec) {
-		this.spec = spec;
-	}
+	
+	
 	
 	
 

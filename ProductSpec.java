@@ -1,41 +1,25 @@
-package sw;
+package project;
 
-import java.io.Serializable;
-
-public class ProductSpec implements Serializable {
+public class ProductSpec {
+	
 	private String name;
-	private double price;
 	private String brand;
+	private double price;
 	private String category;
 	private String description;
-	private Integer rate;
+	private int rate;
 	
-	private static final long serialVersionUID = 1L;
-	 
-	
-	public ProductSpec(String name,double price, String brand, String category, String description, int rate )
+	public ProductSpec(String name, String brand, double price, String category, String description, int rate)
 	{
-		this.name=name;
-		this.price=price;
+		this.name= name;
 		this.brand=brand;
-		this.category=category;
+		this.price=price;
 		this.description=description;
+		this.category=category;
 		this.rate=rate;
 	}
 	
-	public ProductSpec()
-	{
-		
-	}
-	
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	public  String getName() {
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -46,6 +30,12 @@ public class ProductSpec implements Serializable {
 	}
 	public void setBrand(String brand) {
 		this.brand = brand;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	public String getCategory() {
 		return category;
@@ -67,12 +57,5 @@ public class ProductSpec implements Serializable {
 	}
 	
 	
-	@Override
-	public String toString()
-	{
-		return new StringBuffer("Name: ").append(this.getName())
-				.append("Brand: ").append(this.getBrand()).append("Price: ").append(this.getPrice()).append("category: ").append(this.getCategory()).append("Description: ").append(this.getDescription()).append("rate").append(this.getRate()).toString();
 	
-
-	}
 }

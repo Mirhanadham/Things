@@ -5,42 +5,51 @@ import java.util.Scanner;
 
 public class User extends PersonalInfo implements ILogin, IRegister {
 
-	PersonalInfo personal;
+
 	
 	public User()
 	{
 		
 	}
-	
+
+
 	@Override
-	public void  register(Logs log)
+	public void register(Logs log)
 	{
+
+
 		System.out.println("Please enter your username");
 		String name;
 		Scanner sc = new Scanner(System.in); 
-		name= sc.nextLine(); 
+		name= sc.nextLine();
+		this.setName(name);
+
 
     
         System.out.println("Enter your password");
         String pw;
-        pw= sc.nextLine(); 
+        pw= sc.nextLine();
+        this.setPassword(pw);
+
         
          System.out.println("Enter your Email");
         String email;
-		 email= sc.nextLine(); 
+		 email= sc.nextLine();
+		this.setEmail(email);
 
         
          System.out.println("Enter your Gender");
          String gender;
-         gender = sc.nextLine(); 
-
+         gender = sc.nextLine();
+         this.setGender(gender);
         
          System.out.println("Enter your age");
          int age;
          age = sc.nextInt();
+		this.setAge(age);
        
-          personal=new PersonalInfo(name,pw,email,gender,age);
-         log.users.add(personal);
+
+         log.users.add(this);
          
          for(PersonalInfo i:log.users)
          {
@@ -50,7 +59,7 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 	}
 
 	@Override
-	public boolean login(Logs log) {
+	public void login(Logs log) {
 		
 		System.out.println("Enter Admin Username or Email: ");
 		Scanner sc= new Scanner(System.in);
@@ -62,31 +71,36 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 		String pass;
 		pass=s.nextLine();
 		
-		boolean v=false;
+
 		boolean n=false;
 		boolean p=false;
-		for(PersonalInfo in:log.users)
+		for(User in:log.users)
 		{
-			if(((in.getName().contentEquals(name))||(in.getEmail().contentEquals(name)))&&(in.getPassword().contentEquals(pass)))
+			if((in.getName().contentEquals(name))||(in.getEmail().contentEquals(name)))
 			{	
 				n=true;
+			}
+			
+			if(in.getPassword().contentEquals(pass))
+			{
 				p=true;
-			}	
+			}
+			
+				
 		}
 		
+		System.out.println(n );
+		System.out.println(p );
+		
 		if ((n==true)&&(p==true))
-		{
 			System.out.println("you have been logged in successfull");
-			v=true;
-			return v;
-		}
-		else 
+	else 
 	{
-		System.out.println("username or password is incorrect please enter again");
+		
 		int count=0;
 		while ((count<=2) )
 		{
-			
+			System.out.println("username or password is incorrect please enter again");
 			if((n==false)||(p==false))
 			{
 				System.out.println("Please enter your username or email");
@@ -99,35 +113,37 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 				Scanner sp = new Scanner(System.in);
 				pass = sp.nextLine(); 
 				
-				for(PersonalInfo in:log.users)
+				for(User in:log.users)
 				{
-					if((in.getName().equals(name)||in.getEmail().equals(name))&&(in.getPassword().equals(pass)))
+					if(in.getName().equals(name)||in.getEmail().equals(name))
+					{	n=true;
+					}
+					
+					if(in.getPassword().equals(pass))
 					{
-						n=true;
 						p=true;
 					}
-	
+					
+						
 				}
-				if ((n==true)&(p==true))
-					break;
-				System.out.println("username or password is incorrect please enter again");
+				
 				count++;
 			}
 		}
 		if ((n==true)&(p==true))
-		{
 			System.out.println("you have been logged in successfull");
-			v=true;
-			return v;
-		}
-	else {
-		
+		else 
 			System.out.println("Sorry you can't login as you've exceded the trial limit. You may try again later.\n");
-			v=false	;
-			return v;
-	}
 	}
 	
 
+}
+
+
+public static void main(String []args)
+{
+	User us= new User();
+	Logs log= new Logs();
+	us.register(log);
 }
 }

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Inventory {
 	
 	ArrayList<Product> products;
+	ArrayList<Brand> brands;
 	
 	public Inventory()
 	{
 		products = new ArrayList<Product>();
+		brands= new ArrayList<Brand>();
 	}
 	
 	public void addProductToSystem(ProductSpec spec)
@@ -23,5 +25,9 @@ public class Inventory {
 		}
 	}
 	
+	public void addBrandToSystem(Brand brand)
+	{
+		brands.add(brand);
+	}
 
 }

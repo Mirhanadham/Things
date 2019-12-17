@@ -9,11 +9,11 @@ public class Logs {
 	{
 		
 	}
-	ArrayList<PersonalInfo> admins= new ArrayList<PersonalInfo>();
+	ArrayList<Admin> admins= new ArrayList<Admin>();
 	
-	ArrayList<PersonalInfo> users = new ArrayList<PersonalInfo>();
+	ArrayList<User> users = new ArrayList<User>();
 	
-	ArrayList<PersonalInfo> owners= new ArrayList<PersonalInfo>();
+	ArrayList<StoreOwner> owners= new ArrayList<>();
 	
 	
 	

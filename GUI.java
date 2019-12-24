@@ -26,13 +26,12 @@ public class GUI {
 	private JLabel welcome;
 	private Container homeContainer;
 	
-	private JButton UserLogIn;
-	private JButton SOLogIn;
-	private JButton AdminLogIn;
+	private JButton LogIn;
+	
 	private JButton SOSignUp;
 	private JButton UserSignUp;
 	
-	public void UserLogin(User user)
+	public void Login(User user)
 	{
 		JFrame UserLoginUI= new JFrame("User Log In");
 		UserLoginUI.setSize(1000,500);
@@ -85,9 +84,10 @@ public class GUI {
 				Logs log= new Logs();
 				
 				boolean answer=user.login(myname, pas, log);
+				System.out.println(answer);
 				if (answer==true)
 				{
-					//UserWindows();
+					UserView();
 				}
 				else 
 				{
@@ -293,11 +293,27 @@ public class GUI {
 			        Logs log = new Logs();
 			        user.register(user, log);
 			        System.out.println(user.getName()+" "+user.getEmail()+" "+user.getAge()+" "+user.getPassword()+" "+user.getGender()+"\n");
-			        System.out.println(userGen);
 				
 			}
 		});
        
+	}
+	
+	public void UserView()
+	{
+		JFrame userView = new JFrame("User View");
+		userView.setSize(1000, 500);
+		userView.setLocationRelativeTo(null);
+		userView.setVisible(true);
+		
+		JButton viewProducts= new JButton("View Products");
+		viewProducts.setBounds(50,30, 30, 20);
+		
+		JButton order = new JButton("My Order");
+		order.setBounds(50,30, 30, 20);
+		
+		userView.add(viewProducts);
+		userView.add(order);
 	}
 	
 	public GUI()
@@ -317,16 +333,12 @@ public class GUI {
 		
 		
 		
-		UserLogIn= new JButton("User Log In");
-		UserLogIn.setBounds(50,30, 30, 20);
+		LogIn= new JButton("User Log In");
+		LogIn.setBounds(50,30, 30, 20);
 		UserSignUp= new JButton("User Sign Up");
 		UserSignUp.setBounds(50,30, 30, 20);
 		
-		AdminLogIn= new JButton("Admin Log In");
-		AdminLogIn.setBounds(50,30, 30, 20);
 		
-		SOLogIn= new JButton("Store Owner Log In");
-		SOLogIn.setBounds(50,30, 30, 20);
 		SOSignUp= new JButton("Store Owner Sign Up");
 		SOSignUp.setBounds(50,30, 30, 20);
 		
@@ -335,9 +347,7 @@ public class GUI {
 		
 		homeLoginPanel= new JPanel();
 		homeLoginPanel.setBounds(50,50,200,300);
-		homeLoginPanel.add(UserLogIn,gbc);
-		homeLoginPanel.add(AdminLogIn,gbc);
-		homeLoginPanel.add(SOLogIn,gbc);
+		homeLoginPanel.add(LogIn,gbc);
 		homeLoginPanel.setVisible(true);
 		homeSignupPanel= new JPanel();
 		homeSignupPanel.setBounds(50,50,200,300);
@@ -349,13 +359,12 @@ public class GUI {
 		home.add(homeLoginPanel,BorderLayout.WEST);
 		home.add(homeSignupPanel,BorderLayout.EAST);
 		
-		UserLogIn.addActionListener(new ActionListener()
+	    LogIn.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. You have wasted your trials","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
 				User user= new User();
-				UserLogin(user);
+				Login(user);
 			}
 
 			

@@ -1,26 +1,25 @@
 package project;
 
-import java.io.Serializable;
 
-public class PersonalInfo implements Serializable{
+public abstract class PersonalInfo {
 	
     private String name;
 	private String password;
 	private String email;
 	private String gender;
 	private int age ;
-	
+	private int id;
+	public enum Type{
+		STOREOWNER,
+		BUYER,
+		ADMIN
+	}
+	private Type type;
 	public PersonalInfo()
 	{
 		
 	}
- 	public PersonalInfo(String N,String pw, String EM,  String G,int a){
-		this.name=N;
-		this.password=pw;
-		this.email=EM;
-		this.gender=G;
-		this.age=a ;
-	}
+ 	
 	public String getName() {
 		return name;
 	}
@@ -53,12 +52,19 @@ public class PersonalInfo implements Serializable{
 	}
 	
 
-	@Override
-	public String toString()
-	{
-		return "Name: "+this.getName()+"\n"+"Age: "+this.getAge()+"\n"+"Email: "+this.getEmail()+"\n"+"Password: "+this.getPassword()+"\n"+"Gender: "+this.getGender()+"\n";
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 	
 }

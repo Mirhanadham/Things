@@ -1,15 +1,20 @@
 package project;
 
-public class Store {
+public class Store extends StoreSpec {
 
+	public Store(String name, int id,Type type, String location )
+	{
+		this.name=name;
+		this.id=id;
+		this.type=type;
+		this.location=location;
+		this.verified=false;
+		
+	}
 
-    StoreSpec specs;
+	public static void main(String[] args)
+	{
+		
+	}
 
-    public void setSpecs(StoreSpec specs) {
-        this.specs = specs;
-    }
-
-    public StoreSpec getSpecs() {
-        return specs;
-    }
 }

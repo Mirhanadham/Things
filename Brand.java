@@ -2,11 +2,20 @@ package project;
 
 import java.util.Date;
 
-public class Brand {
+public class Brand implements IBrand {
 	private String name;
 	private String category;
 	private String founder;
-	private Date birthdate= new Date();
+	private int id;
+	
+	public Brand(String name, String category, String founder, int id)
+	{
+		this.name=name;
+		this.category=category;
+		this.founder=founder;
+		this.id=id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -25,12 +34,13 @@ public class Brand {
 	public void setFounder(String founder) {
 		this.founder = founder;
 	}
-	public Date getBirthdate() {
-		return birthdate;
+	public int getId() {
+		return id;
 	}
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+	public void setId(int id) {
+		this.id = id;
 	}
+	
 	
 	
 

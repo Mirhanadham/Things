@@ -2,33 +2,29 @@ package project;
 
 public class ProductSpec {
 	
-	private String name;
-	private String brand;
-	private double price;
-	private String category;
-	private String description;
-	private int rate;
-	
-	public ProductSpec(String name, String brand, double price, String category, String description, int rate)
-	{
-		this.name= name;
-		this.brand=brand;
-		this.price=price;
-		this.description=description;
-		this.category=category;
-		this.rate=rate;
-	}
+	public String name;
+	public IBrand brand;
+	public double price;
+	public String category;
+	public int id;
+
 	
 	public String getName() {
 		return name;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBrand() {
+	public IBrand getBrand() {
 		return brand;
 	}
-	public void setBrand(String brand) {
+	public void setBrand(IBrand brand) {
 		this.brand = brand;
 	}
 	public double getPrice() {
@@ -43,18 +39,8 @@ public class ProductSpec {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getRate() {
-		return rate;
-	}
-	public void setRate(int rate) {
-		this.rate = rate;
-	}
+	
+	
 	
 	
 	

@@ -1,23 +1,15 @@
 package project;
 
-public class ProductSpec {
+public abstract class ProductSpec {
 	
-	private String name;
-	private String brand;
-	private double price;
-	private String category;
-	private String description;
-	private int rate;
+	public String name;
+	public String brand;
+	public double price;
+	public String category;
+	public int Id;
 	
-	public ProductSpec(String name, String brand, double price, String category, String description, int rate)
-	{
-		this.name= name;
-		this.brand=brand;
-		this.price=price;
-		this.description=description;
-		this.category=category;
-		this.rate=rate;
-	}
+	
+	
 	
 	public String getName() {
 		return name;
@@ -43,17 +35,12 @@ public class ProductSpec {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getDescription() {
-		return description;
+	
+	public int getId() {
+		return Id;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getRate() {
-		return rate;
-	}
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setId(int Id) {
+		this.Id = Id;
 	}
 	
 	

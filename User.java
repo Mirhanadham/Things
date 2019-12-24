@@ -138,7 +138,16 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 	
 
 }
-
+  
+	public boolean confirmOrder(//primary key"ordernumber")
+	{
+		Scanner sn = new Scanner(System.in); 
+		co = sn.nextLine(); 
+		if(co==0)
+			return false;
+		else 
+			return true;
+		}
 
 public static void main(String []args)
 {

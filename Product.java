@@ -1,21 +1,18 @@
 package project;
 
-import java.util.ArrayList;
 
-public class Product {
-	ProductSpec spec;
-	
-	public Product(ProductSpec spec)
-	{
-		this.spec=spec;
-	}
-	public ProductSpec getSpec()
-	{
-		return this.spec;
-	}
-	
-	
-	
-	
 
+public class Product extends ProductSpec {
+ 
+	
+	
+	public Product(String name ,String category, double price ,String brand, int id) {
+		
+		this.brand= brand;
+		this.category=category;
+		this.price=price;
+		this.name=name;
+		this.Id=id;
+		
+		}
 }

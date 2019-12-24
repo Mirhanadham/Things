@@ -1,8 +1,8 @@
 package project;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 
-public class PersonalInfo implements Serializable{
+public abstract class PersonalInfo {
 	
     private String name;
 	private String password;
@@ -53,12 +53,5 @@ public class PersonalInfo implements Serializable{
 	}
 	
 
-	@Override
-	public String toString()
-	{
-		return "Name: "+this.getName()+"\n"+"Age: "+this.getAge()+"\n"+"Email: "+this.getEmail()+"\n"+"Password: "+this.getPassword()+"\n"+"Gender: "+this.getGender()+"\n";
-	
-
-	}
 	
 }

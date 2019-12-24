@@ -9,37 +9,20 @@ public class StoreOwner extends PersonalInfo implements ILogin, IRegister {
 
 	ArrayList<Store> stores;
 	
-	@Override
-	public void register(Logs log)
-	{
-		System.out.println("Please enter your username");
-		String name;
-		Scanner sc = new Scanner(System.in); 
-		name= sc.nextLine();
+	public StoreOwner(String name, String pass, String email, String gen, int age) {
 		this.setName(name);
+		this.setAge(age);
+		this.setEmail(email);
+		this.setPassword(pass);
+		this.setGender(gen);		
+	}
 
-    
-        System.out.println("Enter your password");
-        String pw;
-        pw= sc.nextLine();
-        this.setPassword(pw);
-        
-         System.out.println("Enter your Email");
-        String email;
-		 email= sc.nextLine(); 
-        this.setEmail(email);
-        
-         System.out.println("Enter your Gender");
-         String gender;
-         gender = sc.nextLine(); 
-        this.setGender(gender);
-        
-         System.out.println("Enter your age");
-         int age;
-         age = sc.nextInt();
-       this.setAge(age);
+	@Override
+	public void register(Object obj,Logs log)
+	{
+		
 
-         log.owners.add(this);
+         log.owners.add((StoreOwner) obj);
          
          for(PersonalInfo i:log.owners)
          {
@@ -48,8 +31,7 @@ public class StoreOwner extends PersonalInfo implements ILogin, IRegister {
 	
 	}
 
-	@Override
-	public void login(Logs log) {
+	public void login(Object user,Logs log) {
 		
 		System.out.println("Enter Admin Username or Email: ");
 		Scanner sc= new Scanner(System.in);
@@ -127,4 +109,11 @@ public class StoreOwner extends PersonalInfo implements ILogin, IRegister {
 	}
 
 }
+
+	@Override
+	public boolean login(String name, String pass, Logs log) {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
 }

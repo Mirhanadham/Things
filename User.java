@@ -7,49 +7,26 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 
 
 	
-	public User()
+	public User(String name, String pass, String email, String gender, int age)
 	{
-		
+		this.setName(name);
+		this.setEmail(email);
+		this.setPassword(pass);
+		this.setAge(age);
+		this.setGender(gender);	
+	}
+
+
+	public User() {
+		// TODO Auto-generated constructor stub
 	}
 
 
 	@Override
-	public void register(Logs log)
+	public void register(Object user,Logs log)
 	{
 
-
-		System.out.println("Please enter your username");
-		String name;
-		Scanner sc = new Scanner(System.in); 
-		name= sc.nextLine();
-		this.setName(name);
-
-
-    
-        System.out.println("Enter your password");
-        String pw;
-        pw= sc.nextLine();
-        this.setPassword(pw);
-
-        
-         System.out.println("Enter your Email");
-        String email;
-		 email= sc.nextLine();
-		this.setEmail(email);
-
-        
-         System.out.println("Enter your Gender");
-         String gender;
-         gender = sc.nextLine();
-         this.setGender(gender);
-        
-         System.out.println("Enter your age");
-         int age;
-         age = sc.nextInt();
-		this.setAge(age);
-       
-
-         log.users.add(this);
+         log.users.add((User) user);
          
          for(PersonalInfo i:log.users)
          {
@@ -59,21 +36,15 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 	}
 
 	@Override
-	public void login(Logs log) {
+	public boolean login(String name,String pass,Logs log) {
 		
-		System.out.println("Enter Admin Username or Email: ");
-		Scanner sc= new Scanner(System.in);
-		String name;
-		name=sc.nextLine();
 		
-		System.out.println("Enter Admin Password: ");
-		Scanner s= new Scanner(System.in);
-		String pass;
-		pass=s.nextLine();
 		
 
 		boolean n=false;
 		boolean p=false;
+		
+		boolean correct=false;
 		for(User in:log.users)
 		{
 			if((in.getName().contentEquals(name))||(in.getEmail().contentEquals(name)))
@@ -89,52 +60,15 @@ public class User extends PersonalInfo implements ILogin, IRegister {
 				
 		}
 		
-		System.out.println(n );
-		System.out.println(p );
+	
+		if (n==true && p==true)
+			correct=true;
+		else
+			correct= false;
 		
-		if ((n==true)&&(p==true))
-			System.out.println("you have been logged in successfull");
-	else 
-	{
+		return correct;
 		
-		int count=0;
-		while ((count<=2) )
-		{
-			System.out.println("username or password is incorrect please enter again");
-			if((n==false)||(p==false))
-			{
-				System.out.println("Please enter your username or email");
-				
-				Scanner sn = new Scanner(System.in); 
-				name = sn.nextLine(); 
-				
-			
-				System.out.println("Please enter your password");
-				Scanner sp = new Scanner(System.in);
-				pass = sp.nextLine(); 
-				
-				for(User in:log.users)
-				{
-					if(in.getName().equals(name)||in.getEmail().equals(name))
-					{	n=true;
-					}
-					
-					if(in.getPassword().equals(pass))
-					{
-						p=true;
-					}
-					
-						
-				}
-				
-				count++;
-			}
-		}
-		if ((n==true)&(p==true))
-			System.out.println("you have been logged in successfull");
-		else 
-			System.out.println("Sorry you can't login as you've exceded the trial limit. You may try again later.\n");
-	}
+		
 	
 
 }
@@ -144,6 +78,6 @@ public static void main(String []args)
 {
 	User us= new User();
 	Logs log= new Logs();
-	us.register(log);
+	us.register(log, log);
 }
 }

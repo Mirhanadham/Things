@@ -1,6 +1,8 @@
 package project;
 
 public interface ILogin {
-	public void login(Logs log);
+	
+
+	public boolean login(String name, String pass, Logs log);
 
 }

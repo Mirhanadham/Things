@@ -2,22 +2,24 @@ package project;
 
 public class Product_Controller {
 	ProductInventory productIn;
-	BrandFunctions brandFunc;
+	Brand_Controller brandFunc;
 	
-	public Product_Controller(ProductInventory in) {
+	public Product_Controller(ProductInventory in, Brand_Controller brandCon) {
 		this.productIn=in;
+		this.brandFunc=brandCon;
 	}
-	public void addProduct_Handler(String name, String category, String brand, double price)
+	public void addProduct_Handler(String name, String category, int brand, double price)
 	{
-		IBrand bran= brandFunc.searchBName(name);
+		IBrand bran=brandFunc.getBrandwId(brand);
+		
 		Product spec= new Product(name, bran, price, category); 
 		productIn.addProduct(spec);
+		
 	}
-	public boolean findBrand(String name)
+	public void viewBrands()
 	{
-		boolean found=false;
-		found=brandFunc.availableBrand(name);
-		return found;
+		brandFunc.viewBrands();
 	}
+	
 
 }

@@ -19,21 +19,25 @@ public class AddProductUI extends JFrame {
 	public AddProductUI(Product_Controller control)
 	{
 		this.prodCon=control;
+
 	
 	}
 	public void adding()
 	{
+		prodCon.viewBrands();
+		
 		JLabel name= new JLabel("Name: ");
 		JTextField nameField= new JTextField(15);
 		JLabel category = new JLabel("Category: ");
 		JTextField categoryField = new JTextField(15);
-		JLabel brand = new JLabel("Brand: ");
+		JLabel brand = new JLabel("Brand ID: ");
 		JTextField brandField = new JTextField(15);
 		JLabel price= new JLabel("Price: ");
 		JTextField priceField= new JTextField(15);
 		
 		JButton add= new JButton("Add");
 	    add.setBounds(50,30, 30, 20);
+	    
 	    
 	    JPanel leftPanel= new JPanel(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -67,26 +71,20 @@ public class AddProductUI extends JFrame {
 	    this.add(leftPanel);
 	    this.setVisible(true);
 	    
+	    
+	    
 	    add.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String pName= nameField.getText();
 				String cat= categoryField.getText();
-				String brandName= brandField.getText();
+				int brandID=Integer.parseInt(brandField.getText());
 				double value=Double.parseDouble( priceField.getText());
 				
-				boolean found=false;
-				found=prodCon.findBrand(brandName);
-				if(found==true)
-				{
-					prodCon.addProduct_Handler(pName, cat, brandName, value);
-
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "The brand you entered in not found.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
-				}
+				prodCon.addProduct_Handler(pName, cat, brandID, value);
+				
+				
 			}
 		});
 	}
@@ -94,7 +92,9 @@ public class AddProductUI extends JFrame {
 	public static void main(String []args)
 	{
 		ProductInventory in = new ProductInventory();
-		Product_Controller control = new Product_Controller(in);
+		BrandFunctions funcs = new BrandFunctions();
+		Brand_Controller brandCon= new Brand_Controller(funcs);
+		Product_Controller control = new Product_Controller(in,brandCon);
 		
 		AddProductUI ui=new AddProductUI(control);
 		ui.adding();

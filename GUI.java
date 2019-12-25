@@ -28,7 +28,6 @@ public class GUI {
 	
 	private JButton LogIn;
 	
-	private JButton SOSignUp;
 	private JButton UserSignUp;
 	
 	public GUI()
@@ -36,11 +35,11 @@ public class GUI {
 		UserFunctionalities userFunc= new UserFunctionalities();
 		User_Controller userHandler= new User_Controller(userFunc);
 		ProductInventory productIn= new ProductInventory();
-		Product_Controller prodCon= new Product_Controller(productIn);
+		
 		
 		
 		home= new JFrame("Hello");
-		home.setSize(1000, 1000);
+		home.setSize(1000, 500);
 		home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		home.setLocationRelativeTo(null);
 		home.setVisible(true);
@@ -53,14 +52,13 @@ public class GUI {
 		
 		
 		
-		LogIn= new JButton("User Log In");
+		LogIn= new JButton(" Log In");
 		LogIn.setBounds(50,30, 30, 20);
 		UserSignUp= new JButton("User Sign Up");
 		UserSignUp.setBounds(50,30, 30, 20);
 		
 		
-		SOSignUp= new JButton("Store Owner Sign Up");
-		SOSignUp.setBounds(50,30, 30, 20);
+		
 		
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -72,7 +70,7 @@ public class GUI {
 		homeSignupPanel= new JPanel();
 		homeSignupPanel.setBounds(50,50,200,300);
 		homeSignupPanel.add(UserSignUp);
-		homeSignupPanel.add(SOSignUp);
+		
 		homeSignupPanel.setVisible(true);
 		
 		home.add(welcome,BorderLayout.NORTH);
@@ -85,15 +83,9 @@ public class GUI {
 			{
 				LoginGUI loginui= new LoginGUI(userHandler);
 				PersonalInfo user= loginui.login();
-				if (user==null)
-				{
-					JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else if(user.getType().equals(UserType.ADMIN))
-				{
-					AdminUI admin= new AdminUI();
-					admin.addProducts(prodCon);
-				}
+				
+				
+				
 			}
 
 			

@@ -6,8 +6,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class AdminUI extends JFrame{
+	Admin_Controller adminControl;
 	public AdminUI()
 	{
+		
 		this.setSize(1000, 500);
 		this.setVisible(true);
 		
@@ -40,7 +42,7 @@ public class AdminUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				AddBrandUI brandui= new AddBrandUI(brandCon);
 			}
 		});
 	}

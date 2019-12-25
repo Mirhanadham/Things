@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 
 public class RegistrationGUI extends JFrame {
 	
-	public RegistrationGUI(User_Controller userControl)
+	User_Controller userControl;
+	public RegistrationGUI(User_Controller userCon)
 	{
+		this.userControl=userCon;
 		
 	
 	JLabel name= new JLabel("Name: ");

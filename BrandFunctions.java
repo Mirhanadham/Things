@@ -9,9 +9,9 @@ public class BrandFunctions {
 		Brand brand1= new Brand("Tshirt","clothes","david");
 		addBrand(brand1);
 		Brand brand2= new Brand("pants","clothes","hanem");
-		addBrand(brand1);
+		addBrand(brand2);
 		Brand brand3= new Brand("pants","clothes","dave");
-		addBrand(brand1);
+		addBrand(brand3);
 		
 	}
 	
@@ -31,15 +31,20 @@ public class BrandFunctions {
 		return null;
 	}
 	
-	public boolean availableBrand(String name)
+	public IBrand getBrandwihId(int id)
 	{
-		
-		IBrand brand = searchBName(name);
-		if (brand!= null)
-			return true;
-		return false;
-		
-		
+		for(int i=0;i<brands.size();i++)
+		{
+			if(brands.get(i).getId()==id)
+				return brands.get(i);
+				
+		}
+		return null;
+	}
+	
+	public ArrayList<IBrand> getBrandList()
+	{
+		return brands;
 	}
 
 }

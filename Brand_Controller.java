@@ -14,5 +14,15 @@ public class Brand_Controller {
 		brandFunc.addBrand(brand);
 		
 	}
+	public void viewBrands()
+	{
+		DisplayBrands display= new DisplayBrands(brandFunc);
+	}
+	
+	public IBrand getBrandwId(int id)
+	{
+		IBrand brand=brandFunc.getBrandwihId(id);
+		return brand;
+	}
 
 }

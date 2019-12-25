@@ -5,7 +5,6 @@ import project.UserType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
 
 public class UserFunctionalities {
 	ArrayList<PersonalInfo> users;

@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 public class LoginGUI extends JFrame {
 	User_Controller userController;
 	PersonalInfo user;
+	
 	public LoginGUI(User_Controller userControl)
 	{
 		
@@ -69,11 +70,28 @@ public class LoginGUI extends JFrame {
 				String name= nameField.getText();
 				String password= passField.getText();
 				 user= userController.loginHadler(name, password);
+				 if (user==null)
+					{
+						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if(user.getType().equals(UserType.ADMIN))
+					{
+						AdminUI admin= new AdminUI();
+						
+					}
 
 				
 				
 			}
 		});
+	    
 	    return user;
+	}
+	public static void main (String [] args)
+	{
+		UserFunctionalities funs= new UserFunctionalities();
+		User_Controller control= new User_Controller(funs);
+		LoginGUI log=new LoginGUI(control);
+		PersonalInfo info=log.login();
 	}
 }

@@ -3,18 +3,24 @@ package project;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class User extends PersonalInfo {
+public class User implements PersonalInfo {
 
-
+	private String name;
+	private String password;
+	private String email;
+	private String gender;
+	private int age ;
+	private int id;
+	private UserType type;
 	
-	public User(String name, String pass, String email, String gender, int age, int id, Type type)
+	public User(String name, String pass, String email, String gender, int age, UserType type)
 	{
 		this.setName(name);
 		this.setEmail(email);
 		this.setPassword(pass);
 		this.setAge(age);
 		this.setGender(gender);	
-		this.setId(id);
+		this.setId(0);
 		this.setType(type);
 	}
 
@@ -24,56 +30,90 @@ public class User extends PersonalInfo {
 	}
 
 
-//	@Override
-//	public void register(Object user,Logs log)
-//	{
-//
-//         log.users.add((User) user);
-//         
-//         for(PersonalInfo i:log.users)
-//         {
-//        	 System.out.println(i);
-//         }
-//	
-//	}
-//
-//	@Override
-//	public boolean login(String name,String pass,Logs log) {
-//		
-//		
-//		
-//
-//		boolean n=false;
-//		boolean p=false;
-//		
-//		boolean correct=true;
-//		for(User in:log.users)
-//		{
-//			if((in.getName().contentEquals(name))||(in.getEmail().contentEquals(name)))
-//			{	
-//				n=true;
-//			}
-//			
-//			if(in.getPassword().contentEquals(pass))
-//			{
-//				p=true;
-//			}
-//			
-//				
-//		}
-//		
-//	
-//		if (n==true && p==true)
-//			correct=true;
-//		else
-//			correct= false;
-//		
-//		return correct;
-//		
-//		
-//	
-//
-//}
+	@Override
+	public String getName() {
+		return name;
+	}
+
+
+	@Override
+	public void setName(String name) {
+		this.name=name;
+	}
+
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+
+	@Override
+	public void setPassword(String password) {
+		this.password=password;
+	}
+
+
+	@Override
+	public String getEmail() {
+		return email;
+	}
+
+
+	@Override
+	public void setEmail(String email) {
+		this.email=email;
+	}
+
+
+	@Override
+	public String getGender() {
+		return gender;
+	}
+
+
+	@Override
+	public void setGender(String gender) {
+		this.gender=gender;
+	}
+
+
+	@Override
+	public int getAge() {
+		return age;
+	}
+
+
+	@Override
+	public void setAge(int age) {
+		this.age=age;
+	}
+
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+
+	@Override
+	public void setId(int id) {
+		this.id=id;
+	}
+
+
+	@Override
+	public UserType getType() {
+		return type;
+	}
+
+
+	@Override
+	public void setType(UserType type) {
+		this.type=type;
+	}
+
+
 
 
 

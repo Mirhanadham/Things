@@ -14,5 +14,7 @@ public interface  IBrand {
 	public String getFounder();
 	
 	public void setFounder(String founder);	
+	public int getId();
+	public void setId(int id);
 
 }

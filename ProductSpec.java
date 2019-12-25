@@ -1,6 +1,6 @@
 package project;
 
-public class ProductSpec {
+public abstract class ProductSpec {
 	
 	public String name;
 	public IBrand brand;

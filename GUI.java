@@ -31,293 +31,13 @@ public class GUI {
 	private JButton SOSignUp;
 	private JButton UserSignUp;
 	
-	public void Login(User user)
-	{
-		JFrame UserLoginUI= new JFrame("User Log In");
-		UserLoginUI.setSize(1000,500);
-		UserLoginUI.setLocationRelativeTo(null);
-		UserLoginUI.setVisible(true);
-		
-		JLabel name= new JLabel("Name: ");
-		JTextField nameField= new JTextField(20);
-		JLabel pass= new JLabel ("Password: ");
-		JTextField passField = new JTextField(20);
-		JButton loginbtn= new JButton("Log In");
-        loginbtn.setBounds(50,30, 30, 20);
-        JComboBox type= new JComboBox(new String [] {"User","Store Owner","Admin"});
-        
-		
-		
-		
-		JPanel loginPanel = new JPanel(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx=0;
-        constraints.gridy=0;
-        loginPanel.add(name,constraints);
-        constraints.gridx=1;
-        loginPanel.add(nameField,constraints);
-        constraints.gridx=0;
-        constraints.gridy=1;
-        loginPanel.add(pass,constraints);
-        constraints.gridx=1;
-        loginPanel.add(passField,constraints);
-        constraints.gridx=0;
-        constraints.gridy=2;
-        loginPanel.add(type,constraints);
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.gridwidth = 2;
-        loginPanel.add(loginbtn,constraints);
-        
-        		
-        
-        loginbtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				String myname= nameField.getText();
-				String pas= passField.getText();
-				Logs log= new Logs();
-				
-				boolean answer=user.login(myname, pas, log);
-				System.out.println(answer);
-				if (answer==true)
-				{
-					UserView();
-				}
-				else 
-				{
-					int trials=0;
-					boolean ans=false;
-					do
-					
-					{
-						String mytrialname= nameField.getText();
-						String pastrial= passField.getText();
-						
-						
-						ans=user.login(mytrialname, pastrial, log);
-					}while(trials<2 && ans==false);
-					
-					if (trials==2)
-					{
-						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. You have wasted your trials","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
-					}
-				}
-			}
-		});
-        
-        
-        
-		UserLoginUI.add(loginPanel,BorderLayout.CENTER);
-		
-		
-		
-		
-	}
-	
-	public void UserSignup()
-	{
-		JLabel name= new JLabel("Name: ");
-		JTextField nameField= new JTextField(15);
-		JLabel email = new JLabel("Email: ");
-		JTextField emailField = new JTextField(15);
-		JLabel age = new JLabel("Age: ");
-		JTextField ageField = new JTextField(15);
-		JLabel pass= new JLabel("Password: ");
-		JTextField passField= new JTextField(15);
-		JLabel gen= new JLabel("Gender");
-		JComboBox genField = new JComboBox(new String[] {"Female","Male"});
-		JButton register= new JButton("Register");
-        register.setBounds(50,30, 30, 20);
-		
-		JFrame UserSignupUI= new JFrame("User Registration");
-		UserSignupUI.setSize(1000,1000);
-		UserSignupUI.setVisible(true);
-		UserSignupUI.setLocationRelativeTo(null);
-		UserSignupUI.setLayout(new GridLayout(1, 2));
-		
-		JPanel leftPanel= new JPanel(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 0;
-        constraints.gridy = 0;    
-        leftPanel.add(name,constraints);
-        constraints.gridx=1;
-        leftPanel.add(nameField);
-        constraints.gridx=0;
-        constraints.gridy=1;
-        leftPanel.add(email,constraints);
-        constraints.gridx=1;
-        leftPanel.add(emailField,constraints);
-        constraints.gridx=0;
-        constraints.gridy=2;
-        leftPanel.add(age,constraints);
-        constraints.gridx=1;
-        leftPanel.add(ageField,constraints);
-        
-        JPanel rightPanel= new JPanel(new GridBagLayout());
-        GridBagConstraints constraintsR= new GridBagConstraints();
-        constraintsR.anchor= GridBagConstraints.WEST;
-        constraintsR.insets = new Insets(10, 10, 10, 10);
-        constraintsR.gridx=0;
-        constraintsR.gridy=0;
-        rightPanel.add(pass,constraintsR);
-        constraintsR.gridx=1;
-        rightPanel.add(passField,constraintsR);
-        constraintsR.gridx=0;
-        constraintsR.gridy=1;
-        rightPanel.add(gen,constraintsR);
-        constraintsR.gridx=1;
-        rightPanel.add(genField,constraintsR);
-        constraintsR.gridx=10;
-        constraintsR.gridy=20;
-        constraintsR.anchor= GridBagConstraints.SOUTHWEST;
-        rightPanel.add(register,constraintsR);
-        		
-        UserSignupUI.add(leftPanel,BorderLayout.EAST);
-        UserSignupUI.add(rightPanel,BorderLayout.WEST);
-        
-        
-       
-        
-       
-        register.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 String userName= nameField.getText();
-			        String userEmail= emailField.getText();
-			        int userAge=Integer.parseInt( ageField.getText());
-			        String userPass= passField.getText();
-			        String userGen=(String) genField.getSelectedItem();
-				 User user= new User(userName,userPass,userEmail,userGen,userAge);
-			        Logs log = new Logs();
-			        user.register(user, log);
-			        System.out.println(user.getName()+" "+user.getEmail()+" "+user.getAge()+" "+user.getPassword()+" "+user.getGender()+"\n");
-			        System.out.println(userGen);
-				
-			}
-		});
-       
-	
-		
-		
-		
-		
-	}
-	
-	public void SOSignup()
-	{
-
-		JLabel name= new JLabel("Name: ");
-		JTextField nameField= new JTextField(15);
-		JLabel email = new JLabel("Email: ");
-		JTextField emailField = new JTextField(15);
-		JLabel age = new JLabel("Age: ");
-		JTextField ageField = new JTextField(15);
-		JLabel pass= new JLabel("Password: ");
-		JTextField passField= new JTextField(15);
-		JLabel gen= new JLabel("Gender");
-		JComboBox genField = new JComboBox(new String[] {"Female","Male"});
-		JButton register= new JButton("Register");
-        register.setBounds(50,30, 30, 20);
-		
-		JFrame UserSignupUI= new JFrame("Store Owner Registration");
-		UserSignupUI.setSize(1000,1000);
-		UserSignupUI.setVisible(true);
-		UserSignupUI.setLocationRelativeTo(null);
-		UserSignupUI.setLayout(new GridLayout(1, 2));
-		
-		JPanel leftPanel= new JPanel(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 0;
-        constraints.gridy = 0;    
-        leftPanel.add(name,constraints);
-        constraints.gridx=1;
-        leftPanel.add(nameField);
-        constraints.gridx=0;
-        constraints.gridy=1;
-        leftPanel.add(email,constraints);
-        constraints.gridx=1;
-        leftPanel.add(emailField,constraints);
-        constraints.gridx=0;
-        constraints.gridy=2;
-        leftPanel.add(age,constraints);
-        constraints.gridx=1;
-        leftPanel.add(ageField,constraints);
-        
-        JPanel rightPanel= new JPanel(new GridBagLayout());
-        GridBagConstraints constraintsR= new GridBagConstraints();
-        constraintsR.anchor= GridBagConstraints.WEST;
-        constraintsR.insets = new Insets(10, 10, 10, 10);
-        constraintsR.gridx=0;
-        constraintsR.gridy=0;
-        rightPanel.add(pass,constraintsR);
-        constraintsR.gridx=1;
-        rightPanel.add(passField,constraintsR);
-        constraintsR.gridx=0;
-        constraintsR.gridy=1;
-        rightPanel.add(gen,constraintsR);
-        constraintsR.gridx=1;
-        rightPanel.add(genField,constraintsR);
-        constraintsR.gridx=10;
-        constraintsR.gridy=20;
-        constraintsR.anchor= GridBagConstraints.SOUTHWEST;
-        rightPanel.add(register,constraintsR);
-        		
-        UserSignupUI.add(leftPanel,BorderLayout.EAST);
-        UserSignupUI.add(rightPanel,BorderLayout.WEST);
-        
-        
-       
-        
-       
-        register.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 String userName= nameField.getText();
-			        String userEmail= emailField.getText();
-			        int userAge=Integer.parseInt( ageField.getText());
-			        String userPass= passField.getText();
-			        String userGen=(String) genField.getSelectedItem();
-				 StoreOwner user= new StoreOwner(userName,userPass,userEmail,userGen,userAge);
-			        Logs log = new Logs();
-			        user.register(user, log);
-			        System.out.println(user.getName()+" "+user.getEmail()+" "+user.getAge()+" "+user.getPassword()+" "+user.getGender()+"\n");
-				
-			}
-		});
-       
-	}
-	
-	public void UserView()
-	{
-		JFrame userView = new JFrame("User View");
-		userView.setSize(1000, 500);
-		userView.setLocationRelativeTo(null);
-		userView.setVisible(true);
-		
-		JButton viewProducts= new JButton("View Products");
-		viewProducts.setBounds(50,30, 30, 20);
-		
-		JButton order = new JButton("My Order");
-		order.setBounds(50,30, 30, 20);
-		
-		userView.add(viewProducts);
-		userView.add(order);
-	}
-	
 	public GUI()
 	{
+		UserFunctionalities userFunc= new UserFunctionalities();
+		User_Controller userHandler= new User_Controller(userFunc);
+		ProductInventory productIn= new ProductInventory();
+		Product_Controller prodCon= new Product_Controller(productIn);
+		
 		
 		home= new JFrame("Hello");
 		home.setSize(1000, 1000);
@@ -363,8 +83,17 @@ public class GUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				User user= new User();
-				Login(user);
+				LoginGUI loginui= new LoginGUI(userHandler);
+				PersonalInfo user= loginui.login();
+				if (user==null)
+				{
+					JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(user.getType().equals(UserType.ADMIN))
+				{
+					AdminUI admin= new AdminUI();
+					admin.addProducts(prodCon);
+				}
 			}
 
 			
@@ -374,19 +103,10 @@ public class GUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UserSignup();
-				
+				RegistrationGUI regui= new RegistrationGUI(userHandler);
 			}
 		});
 		
-		SOSignUp.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				SOSignup();
-				
-			}
-		});
 		
 		
 		

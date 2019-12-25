@@ -8,12 +8,12 @@ public class Brand implements IBrand {
 	private String founder;
 	private int id;
 	
-	public Brand(String name, String category, String founder, int id)
+	public Brand(String name, String category, String founder)
 	{
 		this.name=name;
 		this.category=category;
 		this.founder=founder;
-		this.id=id;
+		this.id=0;
 	}
 	
 	public String getName() {

@@ -13,7 +13,9 @@ public class ProductInventory{
 	{
 		spec.setId(products.size());
 		products.add(spec);
+
 		System.out.println(spec.getName()+" "+spec.getId());
+
 	}
 	
 	public ProductSpec searchPID(int id)

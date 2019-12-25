@@ -8,18 +8,15 @@ public class Product_Controller {
 		this.productIn=in;
 		this.brandFunc=brandCon;
 	}
-	public void addProduct_Handler(String name, String category, int brand, double price)
+	public void addProduct_Handler(String name, String category, double price)
 	{
-		IBrand bran=brandFunc.getBrandwId(brand);
 		
-		Product spec= new Product(name, bran, price, category); 
+		
+		Product spec= new Product(name, price, category); 
 		productIn.addProduct(spec);
 		
 	}
-	public void viewBrands()
-	{
-		brandFunc.viewBrands();
-	}
+	
 	
 
 }

@@ -24,14 +24,13 @@ public class AddProductUI extends JFrame {
 	}
 	public void adding()
 	{
-		prodCon.viewBrands();
+		
 		
 		JLabel name= new JLabel("Name: ");
 		JTextField nameField= new JTextField(15);
 		JLabel category = new JLabel("Category: ");
 		JTextField categoryField = new JTextField(15);
-		JLabel brand = new JLabel("Brand ID: ");
-		JTextField brandField = new JTextField(15);
+		
 		JLabel price= new JLabel("Price: ");
 		JTextField priceField= new JTextField(15);
 		
@@ -55,17 +54,14 @@ public class AddProductUI extends JFrame {
 	    leftPanel.add(categoryField,constraints);
 	    constraints.gridx=0;
 	    constraints.gridy=2;
-	    leftPanel.add(brand,constraints);
-	    constraints.gridx=1;
-	    leftPanel.add(brandField,constraints);
-	    constraints.gridx=0;
-	    constraints.gridy=3;
 	    leftPanel.add(price,constraints);
 	    constraints.gridx=1;
 	    leftPanel.add(priceField,constraints);
 	    constraints.gridx=0;
-	    constraints.gridy=4;
+	    constraints.gridy=3;
 	    leftPanel.add(add,constraints);
+	   
+	    
 	    
 	    this.setSize(1000, 500);
 	    this.add(leftPanel);
@@ -79,10 +75,10 @@ public class AddProductUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String pName= nameField.getText();
 				String cat= categoryField.getText();
-				int brandID=Integer.parseInt(brandField.getText());
+				
 				double value=Double.parseDouble( priceField.getText());
 				
-				prodCon.addProduct_Handler(pName, cat, brandID, value);
+				prodCon.addProduct_Handler(pName, cat, value);
 				
 				
 			}

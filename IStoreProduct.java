@@ -14,4 +14,7 @@ public interface IStoreProduct {
 	int getQuantity();
 	void setQuantity(int quantity);
 	
+	IBrand getBrand();
+	void setBrand(IBrand brand);
+	
 }

@@ -3,19 +3,26 @@ package project;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StoreSpec {
 
-    private String name;
-    private String type;
-    private String location;
-    private Date birthdate;
+public abstract class StoreSpec {
+
+	public String name;
+
+    public enum Type
+    {
+    	ONLINE,OFFLINE
+    }
+    public String location;
+    public Type type;
+    public int id;
+    public boolean verified;
     ArrayList<Double> statistics;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -23,15 +30,12 @@ public class StoreSpec {
         this.location = location;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
 
     public String getName() {
         return name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
@@ -39,9 +43,23 @@ public class StoreSpec {
         return location;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
-    }
+  
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
 
 
 

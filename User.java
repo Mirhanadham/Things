@@ -3,147 +3,118 @@ package project;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class User extends PersonalInfo implements ILogin, IRegister {
+public class User implements PersonalInfo {
 
-
+	private String name;
+	private String password;
+	private String email;
+	private String gender;
+	private int age ;
+	private int id;
+	private UserType type;
 	
-	public User()
+	public User(String name, String pass, String email, String gender, int age, UserType type)
 	{
-		
-	}
-
-
-	@Override
-	public void register(Logs log)
-	{
-
-
-		System.out.println("Please enter your username");
-		String name;
-		Scanner sc = new Scanner(System.in); 
-		name= sc.nextLine();
 		this.setName(name);
-
-
-    
-        System.out.println("Enter your password");
-        String pw;
-        pw= sc.nextLine();
-        this.setPassword(pw);
-
-        
-         System.out.println("Enter your Email");
-        String email;
-		 email= sc.nextLine();
 		this.setEmail(email);
-
-        
-         System.out.println("Enter your Gender");
-         String gender;
-         gender = sc.nextLine();
-         this.setGender(gender);
-        
-         System.out.println("Enter your age");
-         int age;
-         age = sc.nextInt();
+		this.setPassword(pass);
 		this.setAge(age);
-       
-
-         log.users.add(this);
-         
-         for(PersonalInfo i:log.users)
-         {
-        	 System.out.println(i);
-         }
-	
+		this.setGender(gender);	
+		this.setId(0);
+		this.setType(type);
 	}
+
+
+	public User() {
+		
+	}
+
 
 	@Override
-	public void login(Logs log) {
-		
-		System.out.println("Enter Admin Username or Email: ");
-		Scanner sc= new Scanner(System.in);
-		String name;
-		name=sc.nextLine();
-		
-		System.out.println("Enter Admin Password: ");
-		Scanner s= new Scanner(System.in);
-		String pass;
-		pass=s.nextLine();
-		
-
-		boolean n=false;
-		boolean p=false;
-		for(User in:log.users)
-		{
-			if((in.getName().contentEquals(name))||(in.getEmail().contentEquals(name)))
-			{	
-				n=true;
-			}
-			
-			if(in.getPassword().contentEquals(pass))
-			{
-				p=true;
-			}
-			
-				
-		}
-		
-		System.out.println(n );
-		System.out.println(p );
-		
-		if ((n==true)&&(p==true))
-			System.out.println("you have been logged in successfull");
-	else 
-	{
-		
-		int count=0;
-		while ((count<=2) )
-		{
-			System.out.println("username or password is incorrect please enter again");
-			if((n==false)||(p==false))
-			{
-				System.out.println("Please enter your username or email");
-				
-				Scanner sn = new Scanner(System.in); 
-				name = sn.nextLine(); 
-				
-			
-				System.out.println("Please enter your password");
-				Scanner sp = new Scanner(System.in);
-				pass = sp.nextLine(); 
-				
-				for(User in:log.users)
-				{
-					if(in.getName().equals(name)||in.getEmail().equals(name))
-					{	n=true;
-					}
-					
-					if(in.getPassword().equals(pass))
-					{
-						p=true;
-					}
-					
-						
-				}
-				
-				count++;
-			}
-		}
-		if ((n==true)&(p==true))
-			System.out.println("you have been logged in successfull");
-		else 
-			System.out.println("Sorry you can't login as you've exceded the trial limit. You may try again later.\n");
+	public String getName() {
+		return name;
 	}
-	
-
-}
 
 
-public static void main(String []args)
-{
-	User us= new User();
-	Logs log= new Logs();
-	us.register(log);
-}
+	@Override
+	public void setName(String name) {
+		this.name=name;
+	}
+
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+
+	@Override
+	public void setPassword(String password) {
+		this.password=password;
+	}
+
+
+	@Override
+	public String getEmail() {
+		return email;
+	}
+
+
+	@Override
+	public void setEmail(String email) {
+		this.email=email;
+	}
+
+
+	@Override
+	public String getGender() {
+		return gender;
+	}
+
+
+	@Override
+	public void setGender(String gender) {
+		this.gender=gender;
+	}
+
+
+	@Override
+	public int getAge() {
+		return age;
+	}
+
+
+	@Override
+	public void setAge(int age) {
+		this.age=age;
+	}
+
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+
+	@Override
+	public void setId(int id) {
+		this.id=id;
+	}
+
+
+	@Override
+	public UserType getType() {
+		return type;
+	}
+
+
+	@Override
+	public void setType(UserType type) {
+		this.type=type;
+	}
+
+
+
+
+
 }

@@ -6,8 +6,9 @@ public class StoreProduct implements IStoreProduct {
 	private int storeId;
 	private int productId;
 	private int quantity;
+	private IBrand brand;
 	
-	public StoreProduct(int id, int pid, int sid, int quant)
+	public StoreProduct(int id, IBrand bran,int pid, int sid, int quant)
 	{
 		this.id=id;
 		this.productId=pid;
@@ -50,6 +51,18 @@ public class StoreProduct implements IStoreProduct {
 	public void setQuantity(int quantity) {
 		this.quantity=quantity;
 		
+	}
+
+
+	@Override
+	public IBrand getBrand() {
+		return brand;
+	}
+
+
+	@Override
+	public void setBrand(IBrand brand) {
+		this.brand=brand;
 	}
 	
 	

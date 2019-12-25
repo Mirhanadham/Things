@@ -21,8 +21,9 @@ public class DisplayBrands extends JFrame {
 			display.append(brand.getId()+ " "+brand.getName()+" "+brand.getCategory()+" "+brand.getFounder()+"\n");
 		}
 		this.add(display);
-		this.setSize(1000,500);
-		this.setVisible(true); 
+
+		this.setVisible(true);
+
 	}
 	
 

@@ -30,11 +30,25 @@ public class GUI {
 	
 	private JButton UserSignUp;
 	
+	PersonalInfo user;
+	UserFunctionalities userFunc;
+	BrandFunctions brandFunc;
+	User_Controller userHandler;
+	ProductInventory productIn;
+	Admin_Controller adminCon;
+	Product_Controller podCon;
+	Brand_Controller brandCon;
+	
+	
 	public GUI()
 	{
-		UserFunctionalities userFunc= new UserFunctionalities();
-		User_Controller userHandler= new User_Controller(userFunc);
-		ProductInventory productIn= new ProductInventory();
+		this.userFunc= new UserFunctionalities();
+		this.userHandler= new User_Controller(userFunc);
+		this.productIn= new ProductInventory();
+		this.brandFunc= new BrandFunctions();
+		this.brandCon= new Brand_Controller(brandFunc);
+		this.podCon= new Product_Controller(productIn, brandCon);
+		this.adminCon= new Admin_Controller(podCon, brandCon);
 		
 		
 		
@@ -81,15 +95,17 @@ public class GUI {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				LoginGUI loginui= new LoginGUI(userHandler);
-				PersonalInfo user= loginui.login();
 				
-				
+				 Login();
+			
 				
 			}
+			
 
 			
 		});
+	    
+
 		
 		UserSignUp.addActionListener(new ActionListener() {
 			
@@ -103,6 +119,71 @@ public class GUI {
 		
 		
 
+		
+	}
+	public void Login()
+	{
+		JLabel name= new JLabel("Name: ");
+		JTextField nameField= new JTextField(20);
+		JLabel pass= new JLabel ("Password: ");
+		JTextField passField = new JTextField(20);
+		JButton loginbtn= new JButton("Log In");
+	    loginbtn.setBounds(50,30, 30, 20);
+	   // JComboBox<UserType> type = new JComboBox<UserType>(new UserType [] {UserType.ADMIN, UserType.BUYER,UserType.STOREOWNER});
+	    
+		
+		
+		
+		JPanel loginPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+	    constraints.anchor = GridBagConstraints.WEST;
+	    constraints.insets = new Insets(10, 10, 10, 10);
+	    constraints.gridx=0;
+	    constraints.gridy=0;
+	    loginPanel.add(name,constraints);
+	    constraints.gridx=1;
+	    loginPanel.add(nameField,constraints);
+	    constraints.gridx=0;
+	    constraints.gridy=1;
+	    loginPanel.add(pass,constraints);
+	    constraints.gridx=1;
+	    loginPanel.add(passField,constraints);
+	    constraints.anchor = GridBagConstraints.CENTER;
+	    constraints.gridx = 0;
+	    constraints.gridy = 2;
+	    constraints.gridwidth = 2;
+	    loginPanel.add(loginbtn,constraints);
+	    
+	    JFrame logIn= new JFrame ("Login");
+	    logIn.setSize(1000,500);
+	    
+	    logIn.add(loginPanel);
+	    logIn.setVisible(true);
+	    
+	    
+	    loginbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name= nameField.getText();
+				String password= passField.getText();
+				 user= userHandler.loginHadler(name, password);
+				 if (user==null)
+					{
+						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
+					}
+					else if(user.getType().equals(UserType.ADMIN))
+					{
+						AdminUI admin= new AdminUI(adminCon);
+						
+					}
+				 				
+				
+			}
+		});
+	    
+	    
+		 
 		
 	}
 	

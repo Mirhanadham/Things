@@ -70,23 +70,14 @@ public class LoginGUI extends JFrame {
 				String name= nameField.getText();
 				String password= passField.getText();
 				 user= userController.loginHadler(name, password);
-				 if (user==null)
-					{
-						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
-					}
-					else if(user.getType().equals(UserType.ADMIN))
-					{
-						AdminUI admin= new AdminUI();
-						
-					}
-
-				
+				 				
 				
 			}
 		});
 	    
 	    return user;
 	}
+	
 	public static void main (String [] args)
 	{
 		UserFunctionalities funs= new UserFunctionalities();

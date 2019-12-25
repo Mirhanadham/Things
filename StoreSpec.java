@@ -16,7 +16,7 @@ public abstract class StoreSpec {
     public Type type;
     public int id;
     public boolean verified;
-    ArrayList<Double> statistics;
+   
 
     public void setName(String name) {
         this.name = name;

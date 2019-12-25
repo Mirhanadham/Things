@@ -3,7 +3,6 @@ package project;
 public abstract class ProductSpec {
 	
 	public String name;
-	public IBrand brand;
 	public double price;
 	public String category;
 	public int id;
@@ -20,12 +19,6 @@ public abstract class ProductSpec {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public IBrand getBrand() {
-		return brand;
-	}
-	public void setBrand(IBrand brand) {
-		this.brand = brand;
 	}
 	public double getPrice() {
 		return price;

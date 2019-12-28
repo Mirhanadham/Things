@@ -1,9 +1,12 @@
-package project;
+package UI;
 
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+
+import project.BrandFunctions;
+import project.IBrand;
 
 public class DisplayBrands extends JFrame {
 	
@@ -21,9 +24,9 @@ public class DisplayBrands extends JFrame {
 			display.append(brand.getId()+ " "+brand.getName()+" "+brand.getCategory()+" "+brand.getFounder()+"\n");
 		}
 		this.add(display);
-
+		this.setSize(1000,500);
+		this.setTitle("Brands List");
 		this.setVisible(true);
-
 	}
 	
 

@@ -1,4 +1,9 @@
-package project;
+package Controllers;
+
+import UI.DisplayBrands;
+import project.Brand;
+import project.BrandFunctions;
+import project.IBrand;
 
 public class Brand_Controller {
 	BrandFunctions brandFunc;

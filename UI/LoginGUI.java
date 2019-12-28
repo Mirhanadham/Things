@@ -1,4 +1,4 @@
-package project;
+package UI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Controllers.User_Controller;
+import project.PersonalInfo;
+import project.UserFunctionalities;
 
 public class LoginGUI extends JFrame {
 	User_Controller userController;

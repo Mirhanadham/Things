@@ -10,10 +10,10 @@ public class statistics {
 	Map<Integer ,Integer > boughtProducts=new HashMap();
 	
 	// di hyt3mlha calll gwa function aly btlist alproducts ll user
-	public void updateViews(int ID){
-			Integer value = view.get(ID);
+	public void updateViews(int sID){
+			Integer value = view.get(sID);
 			value=value+1;
-			view.put(ID, value);
+			view.put(sID, value);
 		
 	}
 	

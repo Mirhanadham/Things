@@ -1,4 +1,4 @@
-package project;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -13,6 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Controllers.User_Controller;
+import project.UserFunctionalities;
+import project.UserType;
 
 public class RegistrationGUI extends JFrame {
 	
@@ -93,6 +97,7 @@ public class RegistrationGUI extends JFrame {
 		        userControl.registrationHandler(userName, userPass, userEmail, userGen, userAge, Type);
 			  
 		        System.out.println(userGen);
+		        register.setEnabled(false);
 			
 		}
 	});

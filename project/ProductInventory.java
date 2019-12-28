@@ -13,9 +13,7 @@ public class ProductInventory{
 	{
 		spec.setId(products.size());
 		products.add(spec);
-
 		System.out.println(spec.getName()+" "+spec.getId());
-
 	}
 	
 	public ProductSpec searchPID(int id)
@@ -26,6 +24,16 @@ public class ProductInventory{
 				return spec;
 		}
 		return null;
+	}
+	public String getProductName(int id)
+	{
+		ProductSpec prod= products.get(id);
+		return prod.getName();
+	}
+	
+	public ArrayList<ProductSpec> productList()
+	{
+		return products;
 	}
 
 }

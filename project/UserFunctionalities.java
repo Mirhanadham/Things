@@ -13,7 +13,7 @@ public class UserFunctionalities {
 	{
 		users= new ArrayList<PersonalInfo>();
 		
-		User admin1= new User("Hanem","hanem123","hanemamgad@gmail.com","female",20,UserType.ADMIN);
+		User admin1= new User("Hanem","hanem123","hanemamgad@gmail.com","female",20,UserType.STOREOWNER);
 		register(admin1);
 		
 		User admin2= new User("Mirhan","mirhan123","mirhan@gmail.com","female",20,UserType.ADMIN);

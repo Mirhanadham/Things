@@ -1,4 +1,4 @@
-package project;
+package UI;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,13 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Controllers.Admin_Controller;
+import project.PersonalInfo;
+
 public class AdminUI extends JFrame{
 	Admin_Controller adminControl;
+	PersonalInfo user;
 	JButton addProduct;
 	JButton addBrand ;
-	public AdminUI(Admin_Controller con)
+	public AdminUI(Admin_Controller con,PersonalInfo info )
 	{
 		this.adminControl=con;
+		this.user= info;
 		this.setSize(1000, 500);
 		this.setVisible(true);
 		 addProduct = new JButton("Add Product");
@@ -33,7 +38,7 @@ public class AdminUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				AddProductUI addP= new AddProductUI(adminControl.podCon);
+				AddProductUI addP= new AddProductUI(adminControl);
 				addP.adding();
 			}
 		});
@@ -47,7 +52,7 @@ public class AdminUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				AddBrandUI brandui= new AddBrandUI(adminControl.barndCon);
+				AddBrandUI brandui= new AddBrandUI(adminControl);
 			}
 		});
 	}

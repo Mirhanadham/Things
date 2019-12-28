@@ -1,4 +1,4 @@
-package project;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -17,6 +17,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Controllers.Admin_Controller;
+import Controllers.Brand_Controller;
+import Controllers.Buyer_Controller;
+import Controllers.Product_Controller;
+import Controllers.SO_Controller;
+import Controllers.User_Controller;
+import project.BrandFunctions;
+import project.PersonalInfo;
+import project.ProductInventory;
+import project.StoreFunctionalities;
+import project.UserFunctionalities;
+import project.UserType;
 
 public class GUI {
 	
@@ -38,6 +51,10 @@ public class GUI {
 	Admin_Controller adminCon;
 	Product_Controller podCon;
 	Brand_Controller brandCon;
+	SO_Controller storeOwnerCon;
+	StoreFunctionalities storeFunc;
+	Buyer_Controller buyerCon;
+	
 	
 	
 	public GUI()
@@ -46,9 +63,13 @@ public class GUI {
 		this.userHandler= new User_Controller(userFunc);
 		this.productIn= new ProductInventory();
 		this.brandFunc= new BrandFunctions();
+		this.storeFunc= new StoreFunctionalities();
 		this.brandCon= new Brand_Controller(brandFunc);
-		this.podCon= new Product_Controller(productIn, brandCon);
+		this.podCon= new Product_Controller(productIn);
 		this.adminCon= new Admin_Controller(podCon, brandCon);
+		this.storeOwnerCon= new SO_Controller(adminCon,storeFunc);
+		
+		this.buyerCon= new Buyer_Controller();
 		
 		
 		
@@ -168,14 +189,22 @@ public class GUI {
 				String name= nameField.getText();
 				String password= passField.getText();
 				 user= userHandler.loginHadler(name, password);
-				 if (user==null)
+				 if (user.getType().equals(UserType.BUYER))
 					{
-						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
+						BuyerUI buyer= new BuyerUI(user,buyerCon);
 					}
 					else if(user.getType().equals(UserType.ADMIN))
 					{
-						AdminUI admin= new AdminUI(adminCon);
+						AdminUI admin= new AdminUI(adminCon,user);
 						
+					}
+					else if (user.getType().equals(UserType.STOREOWNER))
+					{
+						SOUI storeOwner= new SOUI(storeOwnerCon,user);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
 					}
 				 				
 				

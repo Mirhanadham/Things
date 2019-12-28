@@ -1,4 +1,4 @@
-package project;
+package UI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,12 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controllers.Admin_Controller;
+import Controllers.Brand_Controller;
+import project.BrandFunctions;
+
 public class AddBrandUI extends JFrame{
-	Brand_Controller brandCon;
+	Admin_Controller adminCon;
 	
-	public AddBrandUI(Brand_Controller controller)
+	public AddBrandUI(Admin_Controller controller)
 	{
-		this.brandCon=controller;
+		this.adminCon=controller;
 		
 		JLabel name= new JLabel("Name: ");
 		JTextField nameField= new JTextField(15);
@@ -62,7 +66,7 @@ public class AddBrandUI extends JFrame{
 				String cat= catField.getText();
 				String found=founderField.getText();
 				
-				brandCon.addBrand(name, found, cat);
+				adminCon.addBrand_Handler(name, cat, found);
 				
 			}
 		});
@@ -75,7 +79,7 @@ public class AddBrandUI extends JFrame{
 	{
 		BrandFunctions funcs= new BrandFunctions();
 		Brand_Controller con= new Brand_Controller(funcs);
-		new AddBrandUI(con);
+		//new AddBrandUI(con);
 		
 	}
 

@@ -1,4 +1,4 @@
-package project;
+package UI;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,11 +14,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controllers.Admin_Controller;
+import Controllers.Brand_Controller;
+import Controllers.Product_Controller;
+import project.BrandFunctions;
+import project.ProductInventory;
+
 public class AddProductUI extends JFrame {
-	Product_Controller prodCon;
-	public AddProductUI(Product_Controller control)
+	Admin_Controller adminCon;
+	public AddProductUI(Admin_Controller control)
 	{
-		this.prodCon=control;
+		this.adminCon=control;
 
 	
 	}
@@ -78,7 +84,7 @@ public class AddProductUI extends JFrame {
 				
 				double value=Double.parseDouble( priceField.getText());
 				
-				prodCon.addProduct_Handler(pName, cat, value);
+				adminCon.addProduct_Handler(pName, cat, value);
 				
 				
 			}
@@ -90,10 +96,10 @@ public class AddProductUI extends JFrame {
 		ProductInventory in = new ProductInventory();
 		BrandFunctions funcs = new BrandFunctions();
 		Brand_Controller brandCon= new Brand_Controller(funcs);
-		Product_Controller control = new Product_Controller(in,brandCon);
+		Product_Controller control = new Product_Controller(in);
 		
-		AddProductUI ui=new AddProductUI(control);
-		ui.adding();
+		//AddProductUI ui=new AddProductUI(control);
+		//ui.adding();
 		
 	}
 }

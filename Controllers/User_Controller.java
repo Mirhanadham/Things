@@ -1,4 +1,9 @@
-package project;
+package Controllers;
+
+import project.PersonalInfo;
+import project.User;
+import project.UserFunctionalities;
+import project.UserType;
 
 public class User_Controller {
 	UserFunctionalities userfuncs;

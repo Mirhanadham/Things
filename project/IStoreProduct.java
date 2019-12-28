@@ -17,4 +17,15 @@ public interface IStoreProduct {
 	IBrand getBrand();
 	void setBrand(IBrand brand);
 	
+	double getPrice();
+	void setPrice(double price);
+	
+	int getOwnerId();
+	void setOwnerId(int oid);
+	
+	String getProductName();
+	void setProductName(String prodName);
+	
+	
+	
 }

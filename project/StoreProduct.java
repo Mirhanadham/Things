@@ -7,13 +7,19 @@ public class StoreProduct implements IStoreProduct {
 	private int productId;
 	private int quantity;
 	private IBrand brand;
+	private double price;
+	private int ownerId;
+	private String productName;
 	
-	public StoreProduct(int id, IBrand bran,int pid, int sid, int quant)
+	public StoreProduct(IBrand bran,int pid, int sid, int quant,double price, int ownId,String prodName)
 	{
-		this.id=id;
+		this.id=0;
+		this.ownerId=ownId;
 		this.productId=pid;
 		this.quantity=quant;
 		this.storeId=sid;
+		this.price= price;
+		this.productName=prodName;
 	}
 	
 	
@@ -63,6 +69,43 @@ public class StoreProduct implements IStoreProduct {
 	@Override
 	public void setBrand(IBrand brand) {
 		this.brand=brand;
+	}
+
+
+	@Override
+	public double getPrice() {
+		return price;
+	}
+
+
+	@Override
+	public void setPrice(double price) {
+		this.price=price;
+	}
+
+
+	@Override
+	public int getOwnerId() {
+		return ownerId;
+	}
+
+
+	@Override
+	public void setOwnerId(int oid) {
+		this.ownerId=oid;
+		
+	}
+
+
+	@Override
+	public String getProductName() {
+		return productName;
+	}
+
+
+	@Override
+	public void setProductName(String prodName) {
+		this.productName=prodName;
 	}
 	
 	

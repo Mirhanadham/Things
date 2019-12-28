@@ -19,6 +19,7 @@ public class BrandFunctions {
 	{
 		brand.setId(brands.size());
 		brands.add(brand);
+		System.out.println(brand.getId()+" "+brand.getName()+" "+brand.getCategory());
 	}
 	
 	public IBrand searchBName(String name)

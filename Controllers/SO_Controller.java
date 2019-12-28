@@ -5,36 +5,38 @@ import project.StoreFunctionalities;
 import project.StoreProduct;
 
 public class SO_Controller {
-	Admin_Controller adminCon;
-	StoreFunctionalities storeFun;
-	 public SO_Controller(Admin_Controller aCon,StoreFunctionalities funcs) {
-		this.adminCon=aCon;
-		this.storeFun=funcs;
+	Product_Controller prodCon;
+	Brand_Controller brandCon;
+	Store_Controller storeCon;
+	 public SO_Controller(Product_Controller prodcontrol,Brand_Controller brandcontrol,Store_Controller storecontrol) {
+		this.prodCon=prodcontrol;
+		this.brandCon=brandcontrol;
+		this.storeCon=storecontrol;
 
 	}
 	public void addItemToStore(int sid, int brandId, int prodId, double price, int quantity , int ownerId,String prodName)
 	{
-		IBrand brand=adminCon.getBrand(brandId);
-		StoreProduct product= new StoreProduct(brand, prodId, sid, quantity, price,ownerId,prodName);
-		storeFun.addItem(product);
+		IBrand brand=brandCon.getBrandwId(brandId);
+		storeCon.addStoreProduct_Handler(sid, brand, prodId, price, quantity, ownerId, prodName);
+		
 	}
 	public void viewProducts()
 	{
-		adminCon.viewProducts();
+		prodCon.viewProducts();
 	}
 	
 	public void viewBrands()
 	{
-		adminCon.viewBrands();
+		brandCon.viewBrands();
 	}
 	public boolean findProduct(int pid)
 	{
-		return adminCon.findProduct(pid);
+		return prodCon.findProduct(pid);
 	}
 	
 	public boolean findBrand(int bid)
 	{
-		return adminCon.findBrand(bid);
+		return brandCon.findBrand(bid);
 	}
 	
 	public boolean findStore(int sid)
@@ -44,7 +46,7 @@ public class SO_Controller {
 	}
 	public String getProductName(int pid)
 	{
-		return adminCon.getProductName(pid);
+		return prodCon.getProductName(pid);
 	}
 	
 

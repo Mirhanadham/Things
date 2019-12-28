@@ -38,5 +38,14 @@ public class Product_Controller {
 	{
 		return productIn.getProductName(id);
 	}
+	
+	public boolean findProduct(int pid)
+	{
+		ProductSpec spec=productIn.searchPID(pid);
+		if(spec==null)
+			return false;
+		else
+			return true;
+	}
 
 }

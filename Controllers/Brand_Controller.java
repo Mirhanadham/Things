@@ -29,5 +29,14 @@ public class Brand_Controller {
 		IBrand brand=brandFunc.getBrandwihId(id);
 		return brand;
 	}
+	
+	public boolean findBrand(int bid)
+	{
+		IBrand brand= getBrandwId(bid);
+		if(brand==null)
+			return false;
+		else 
+			return true;
+	}
 
 }

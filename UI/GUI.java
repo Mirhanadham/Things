@@ -23,6 +23,7 @@ import Controllers.Brand_Controller;
 import Controllers.Buyer_Controller;
 import Controllers.Product_Controller;
 import Controllers.SO_Controller;
+import Controllers.Store_Controller;
 import Controllers.User_Controller;
 import project.BrandFunctions;
 import project.PersonalInfo;
@@ -54,6 +55,7 @@ public class GUI {
 	SO_Controller storeOwnerCon;
 	StoreFunctionalities storeFunc;
 	Buyer_Controller buyerCon;
+	Store_Controller storeCon;
 	
 	
 	
@@ -67,7 +69,9 @@ public class GUI {
 		this.brandCon= new Brand_Controller(brandFunc);
 		this.podCon= new Product_Controller(productIn);
 		this.adminCon= new Admin_Controller(podCon, brandCon);
-		this.storeOwnerCon= new SO_Controller(adminCon,storeFunc);
+		this.storeCon= new Store_Controller(storeFunc);
+		
+		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon);
 		
 		this.buyerCon= new Buyer_Controller();
 		

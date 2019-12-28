@@ -39,28 +39,9 @@ public class Admin_Controller {
 		IBrand brand=brandCon.getBrandwId(id);
 		return brand;
 	}
-	public boolean findProduct(int pid)
-	{
-		ArrayList<ProductSpec> products=prodCon.getProducts();
-		for(ProductSpec spec:products)
-		{
-			if(spec.getId()==pid)
-				return true;
-		}
-		return false;
-	}
 	
-	public boolean findBrand(int bid)
-	{
-		IBrand brand= brandCon.getBrandwId(bid);
-		if(brand==null)
-			return false;
-		else 
-			return true;
-	}
-	public String getProductName(int id)
-	{
-		return prodCon.getProductName(id);
-	}
+	
+	
+	
 
 }

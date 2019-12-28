@@ -20,9 +20,11 @@ public class DisplayProducts extends JFrame {
 		
 		ArrayList<ProductSpec> pList=products.productList();
 		
+		display.append("ID  Name   Category   Price"+"\n");
+		
 		for(ProductSpec product:pList)
 		{
-			display.append(product.getId()+ " "+product.getName()+" "+product.getCategory()+" "+product.getPrice()+"\n");
+			display.append(product.getId()+ "  "+product.getName()+"   "+product.getCategory()+"   "+product.getPrice()+"\n");
 		}
 		
 		this.setSize(1000,500);

@@ -103,6 +103,7 @@ public class AddStoreItemUI extends JFrame {
 				
 				String productName=soCon.getProductName(productId);
 				
+				
 				boolean productfound= soCon.findProduct(productId);
 				boolean brandfound= soCon.findBrand(brandId);
 				if(brandfound==true && productfound==true)

@@ -73,7 +73,7 @@ public class GUI {
 		
 		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon);
 		
-		this.buyerCon= new Buyer_Controller();
+		this.buyerCon= new Buyer_Controller(storeCon);
 		
 		
 		

@@ -19,9 +19,11 @@ public class DisplayBrands extends JFrame {
 		JTextArea display = new JTextArea();
 		ArrayList<IBrand> brands= brandFun.getBrandList();
 		
+		display.append("ID  Name   Category   Founder"+"\n");
+		
 		for(IBrand brand:brands)
 		{
-			display.append(brand.getId()+ " "+brand.getName()+" "+brand.getCategory()+" "+brand.getFounder()+"\n");
+			display.append(brand.getId()+ "  "+brand.getName()+"   "+brand.getCategory()+"   "+brand.getFounder()+"\n");
 		}
 		this.add(display);
 		this.setSize(1000,500);

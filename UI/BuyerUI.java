@@ -15,7 +15,7 @@ import project.PersonalInfo;
 
 public class BuyerUI extends JFrame {
 	PersonalInfo user;
-	 Buyer_Controller buyerCon;
+	Buyer_Controller buyerCon;
 	
 	JButton addToCart;
 	JButton viewCart;
@@ -55,6 +55,11 @@ public class BuyerUI extends JFrame {
 		pane.add(checkoutOrder,constrains);
 		
 		this.add(pane);
+		viewProducts();
+		additemToCart();
+		viewCart();
+		checkout();
+		
 	
 		
 	}
@@ -65,7 +70,7 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				buyerCon.viewProducts();
 				
 			}
 		});

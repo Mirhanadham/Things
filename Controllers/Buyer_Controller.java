@@ -1,15 +1,18 @@
 package Controllers;
 
-import UI.DisplayStoresItems;
 
 public class Buyer_Controller {
+	Store_Controller storeCon;
 	
-	
-	public Buyer_Controller( )
+	public Buyer_Controller(Store_Controller storecontrol)
 	{
-		
+		this.storeCon=storecontrol;
 	}
 	
+	public void viewProducts()
+	{
+		storeCon.viewStoreProducts();
+	}
 	
 
 }

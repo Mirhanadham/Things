@@ -1,5 +1,6 @@
 package Controllers;
 
+import UI.DisplayStoresItems;
 import project.IBrand;
 import project.StoreFunctionalities;
 import project.StoreProduct;
@@ -15,6 +16,10 @@ public class Store_Controller {
 		
 		StoreProduct product= new StoreProduct(brand, prodId, sid, quantity, price,ownerId,prodName);
 		storeFuncs.addItem(product);
+	}
+	public void viewStoreProducts()
+	{
+		new DisplayStoresItems(storeFuncs);
 	}
 
 }

@@ -2,15 +2,18 @@ package Controllers;
 
 import java.util.ArrayList;
 
+import project.DisplayVerifie;
 import project.IBrand;
 import project.ProductSpec;
 
 public class Admin_Controller {
 	Product_Controller prodCon;
 	Brand_Controller brandCon;
-	
-	public Admin_Controller(Product_Controller podController, Brand_Controller brandController)
+	Verified_Controller verCon;
+	Stat_Controller statCon;
+	public Admin_Controller(Product_Controller podController, Brand_Controller brandController,Verified_Controller verCon)
 	{
+		this.verCon=verCon;
 		this.brandCon=brandController;
 		this.prodCon=podController;
 	}
@@ -24,7 +27,36 @@ public class Admin_Controller {
 	{
 		brandCon.addBrand(name, founder, category);
 	}
+	public void listOfStoresWaiting()
+	{
+		verCon.listOfStoresWaiting();
+	}
 	
+	public void notVerifie(String storeId,String storeOwnerId)
+	{
+		verCon.notVerifie(storeId, storeOwnerId);
+		
+	}
+
+	public void verifie(String storeId,String storeOwnerId)
+	{
+		
+		verCon.verifie(storeId, storeOwnerId);
+		
+	}
+	public void max(int map)
+	{
+		statCon.max(map);
+	}
+	
+	public void min(int map)
+	{
+		statCon.min(map);
+	}
+	public void avg(int map)
+	{
+		statCon.avg(map);
+	}
 	public void viewProducts()
 	{
 		prodCon.viewProducts();

@@ -21,13 +21,16 @@ import javax.swing.JTextField;
 import Controllers.Admin_Controller;
 import Controllers.Brand_Controller;
 import Controllers.Buyer_Controller;
+import Controllers.Collaborater_Controller;
 import Controllers.Product_Controller;
 import Controllers.SO_Controller;
 import Controllers.Store_Controller;
 import Controllers.User_Controller;
+import Controllers.Verified_Controller;
 import project.BrandFunctions;
 import project.PersonalInfo;
 import project.ProductInventory;
+import project.Statistics;
 import project.StoreFunctionalities;
 import project.UserFunctionalities;
 import project.UserType;
@@ -56,22 +59,25 @@ public class GUI {
 	StoreFunctionalities storeFunc;
 	Buyer_Controller buyerCon;
 	Store_Controller storeCon;
-	
-	
-	
+	Verified_Controller verCon;
+	Collaborater_Controller colCon;
+	Statistics stat;
 	public GUI()
 	{
+		this.stat=new Statistics ();
+		this.storeFunc= new StoreFunctionalities();
 		this.userFunc= new UserFunctionalities();
+		this.colCon=new Collaborater_Controller(userFunc);
 		this.userHandler= new User_Controller(userFunc);
 		this.productIn= new ProductInventory();
 		this.brandFunc= new BrandFunctions();
-		this.storeFunc= new StoreFunctionalities();
+		this.verCon=new Verified_Controller(storeFunc);
 		this.brandCon= new Brand_Controller(brandFunc);
 		this.podCon= new Product_Controller(productIn);
-		this.adminCon= new Admin_Controller(podCon, brandCon);
+		this.adminCon= new Admin_Controller(podCon, brandCon,verCon);
 		this.storeCon= new Store_Controller(storeFunc);
 		
-		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon);
+		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon,colCon);
 		
 		this.buyerCon= new Buyer_Controller();
 		
@@ -195,16 +201,24 @@ public class GUI {
 				 user= userHandler.loginHadler(name, password);
 				 if (user.getType().equals(UserType.BUYER))
 					{
-						BuyerUI buyer= new BuyerUI(user,buyerCon);
+					 if (user.isCollaborater()==false)
+						{
+							BuyerUI buyer= new BuyerUI(user,buyerCon);
+						}
+						else
+						{
+							SOUI storeOwner= new SOUI(storeOwnerCon,userFunc,user,stat);
+						}
+						
 					}
 					else if(user.getType().equals(UserType.ADMIN))
 					{
-						AdminUI admin= new AdminUI(adminCon,user);
+						AdminUI admin= new AdminUI(adminCon,user,verCon);
 						
 					}
 					else if (user.getType().equals(UserType.STOREOWNER))
 					{
-						SOUI storeOwner= new SOUI(storeOwnerCon,user);
+						SOUI storeOwner= new SOUI(storeOwnerCon,userFunc,user,stat);
 					}
 					else
 					{
@@ -212,7 +226,7 @@ public class GUI {
 					}
 				 				
 				
-			}
+					}
 		});
 	    
 	    

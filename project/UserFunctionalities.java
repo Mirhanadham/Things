@@ -13,23 +13,35 @@ public class UserFunctionalities {
 	{
 		users= new ArrayList<PersonalInfo>();
 		
-		User admin1= new User("Hanem","hanem123","hanemamgad@gmail.com","female",20,UserType.STOREOWNER);
+		User admin1= new User("Hanem","hanem123","hanemamgad@gmail.com","female",20,UserType.STOREOWNER,false);
 		register(admin1);
 		
-		User admin2= new User("Mirhan","mirhan123","mirhan@gmail.com","female",20,UserType.ADMIN);
+		User admin2= new User("Mirhan","mirhan123","mirhan@gmail.com","female",20,UserType.ADMIN,false);
 		register(admin2);
 		
-		User admin3= new User("Hager","hager123","hager@gmail.com","female",20,UserType.ADMIN);
+		User admin3= new User("Hager","hager123","hager@gmail.com","female",20,UserType.ADMIN,false);
 		register(admin3);
 		
 	}
-	
+	public void setColToTrue(String name)
+	{
+		for (PersonalInfo us:users)
+		{
+			if ( us.getName().equals(name))
+			{
+				us.setCollaborater(true);
+			}
+		
+		}	
+	}
 	public void register(PersonalInfo user)
 	{
 		user.setId(users.size());
 		users.add(user);
 	}
-	
+	public ArrayList<PersonalInfo> getUsers(){
+		return users;
+	}
 	
 	
 	public PersonalInfo login(String name, String pass)
@@ -53,7 +65,7 @@ public class UserFunctionalities {
 	{
 		UserFunctionalities fun= new UserFunctionalities();
 
-		User us= new User("Mirhan","mirhan123","mirhan2@gmail.com","female",20,UserType.ADMIN);
+		User us= new User("Mirhan","mirhan123","mirhan2@gmail.com","female",20,UserType.ADMIN,false);
 		fun.register(us);
 		System.out.println(us.getName()+" "+us.getEmail()+" "+us.getAge()+" "+us.getGender()+" "+us.getPassword()+" "+us.getId()+" ");
 		System.out.println("enter email or name:");

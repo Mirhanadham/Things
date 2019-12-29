@@ -3,11 +3,6 @@ package project;
 
 public  interface PersonalInfo {
 	
-    
-	
-	
-	
- 	
 	 String getName() ;
 	 void setName(String name);
 	
@@ -30,4 +25,10 @@ public  interface PersonalInfo {
 	 UserType getType() ;
 	 void setType(UserType type);
 	
+	
+	  boolean isCollaborater() ;
+
+
+		 void setCollaborater(boolean collaborater) ;
+	 
 }

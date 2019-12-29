@@ -12,11 +12,13 @@ import javax.swing.JPanel;
 
 import Controllers.Buyer_Controller;
 import project.PersonalInfo;
+import project.ProductInventory;
 
 public class BuyerUI extends JFrame {
 	PersonalInfo user;
 	 Buyer_Controller buyerCon;
-	
+	ProductInventory productInvt;
+	 
 	JButton addToCart;
 	JButton viewCart;
 	JButton checkoutOrder;
@@ -65,7 +67,6 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				
 			}
 		});

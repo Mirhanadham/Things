@@ -2,11 +2,13 @@ package Controllers;
 
 import UI.DisplayStoresItems;
 import project.IBrand;
+import project.IStoreProduct;
 import project.StoreFunctionalities;
 import project.StoreProduct;
 
 public class Store_Controller {
 	StoreFunctionalities storeFuncs;
+	
 	public Store_Controller(StoreFunctionalities funcs)
 	{
 		this.storeFuncs=funcs;
@@ -20,6 +22,14 @@ public class Store_Controller {
 	public void viewStoreProducts()
 	{
 		new DisplayStoresItems(storeFuncs);
+	}
+	public IStoreProduct getStoreProdWithID(int pid)
+	{
+		return storeFuncs.getItemWithID(pid);
+	}
+	public void updateQuantity(int pid, int quantity)
+	{
+		storeFuncs.updateQuantity(pid, quantity);
 	}
 
 }

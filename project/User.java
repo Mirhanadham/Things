@@ -12,6 +12,7 @@ public class User implements PersonalInfo {
 	private int age ;
 	private int id;
 	private UserType type;
+	private boolean firstOrder;
 	
 	public User(String name, String pass, String email, String gender, int age, UserType type)
 	{
@@ -22,6 +23,8 @@ public class User implements PersonalInfo {
 		this.setGender(gender);	
 		this.setId(0);
 		this.setType(type);
+		this.setFirstOrder(true);
+		
 	}
 
 
@@ -111,6 +114,19 @@ public class User implements PersonalInfo {
 	@Override
 	public void setType(UserType type) {
 		this.type=type;
+	}
+
+
+	@Override
+	public boolean getFirtsOrder() {
+		return firstOrder;
+	}
+
+
+	@Override
+	public void setFirstOrder(boolean firstOrder) {
+		this.firstOrder=firstOrder;
+		
 	}
 
 

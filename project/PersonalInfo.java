@@ -3,11 +3,9 @@ package project;
 
 public  interface PersonalInfo {
 	
-    
-	
-	
-	
- 	
+     boolean getFirtsOrder();
+     void setFirstOrder(boolean firstOrder);
+     
 	 String getName() ;
 	 void setName(String name);
 	

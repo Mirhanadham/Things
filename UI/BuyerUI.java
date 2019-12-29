@@ -8,14 +8,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Controllers.Buyer_Controller;
+import Controllers.Cart_Controller;
+import Controllers.Store_Controller;
+import project.Cart;
 import project.PersonalInfo;
 
 public class BuyerUI extends JFrame {
 	PersonalInfo user;
-	Buyer_Controller buyerCon;
+	Store_Controller storeCon;
+	Cart_Controller cartCon;
 	
 	JButton addToCart;
 	JButton viewCart;
@@ -23,10 +27,11 @@ public class BuyerUI extends JFrame {
 	JButton surfProducts;
 	JPanel pane;
 	
-	public BuyerUI(PersonalInfo buyer, Buyer_Controller control)
+	public BuyerUI(PersonalInfo buyer, Store_Controller  storecontrol, Cart_Controller cartcontrol)
 	{
 		this.user=buyer;
-		this.buyerCon=control;
+		this.storeCon=storecontrol;
+		this.cartCon=cartcontrol;
 		this.setSize(1000,500);
 		this.setTitle("Buyer");
 		this.setVisible(true);
@@ -70,7 +75,7 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				buyerCon.viewProducts();
+				storeCon.viewStoreProducts();
 				
 			}
 		});
@@ -81,7 +86,8 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				storeCon.viewStoreProducts();
+				new AddProductToCartUI(cartCon,user);
 				
 			}
 		});
@@ -93,7 +99,10 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				Cart cart=cartCon.getCartByID(user.getId());
+					new DisplayCartItems(cart);
+				
+
 				
 			}
 		});
@@ -105,8 +114,8 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				Cart cart=cartCon.getCartByID(user.getId());
+				new CheckOutUI(cart, user);
 			}
 		});
 	}

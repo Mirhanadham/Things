@@ -14,18 +14,16 @@ public class StoreFunctionalities {
 	}
 	
 	public void addItem(IStoreProduct storeprsoduct)
-	{  // System.out.println("product 1");
+	{ 
 		
 		storeprsoduct.setId(storeProductList.size());
 		storeProductList.add(storeprsoduct);
 		System.out.println(storeprsoduct.getId()+" "+storeprsoduct.getProductId()+" "+storeprsoduct.getStoreId());
-//		System.out.println("prodcut id "+storeprsoduct.getId());
-		
-		//System.out.println("product list size "+storeProductList.size());
+
 		
 	}
 	
-	//public void addCollaborators();
+	
 	
 	public void addStore(StoreSpec storespec )  {
 		storespec.setId(storesList.size());
@@ -39,6 +37,11 @@ public class StoreFunctionalities {
 	{
 		StoreSpec store= storesList.get(sid);
 		return store.getName();
+	}
+	
+	public void updateQuantity(int pid, int quantity)
+	{
+		 storeProductList.get(pid).setQuantity(quantity);
 	}
 	
 	
@@ -69,4 +72,13 @@ public class StoreFunctionalities {
 		return storeProductList;
 	}
 	
+	public IStoreProduct getItemWithID(int id)
+	{
+		for(IStoreProduct prod:storeProductList)
+		{
+			if(prod.getId()==id)
+				return prod;
+		}
+		return null;
+	}
 }

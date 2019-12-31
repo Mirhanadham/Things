@@ -13,16 +13,15 @@ import project.PersonalInfo;
 public class AdminUI extends JFrame{
 	Admin_Controller adminControl;
 	PersonalInfo user;
-	Verified_Controller verCon;
 	JButton addProduct;
 	JButton addBrand ;
 	JButton verifie;
 	JButton addNewStatistics;
-	public AdminUI(Admin_Controller con,PersonalInfo info,Verified_Controller verCon)
+	public AdminUI(Admin_Controller con,PersonalInfo info)
 	{
 		
 		
-		this.verCon=verCon;
+		
 		this.adminControl=con;
 		this.user= info;
 		this.setSize(1000, 500);
@@ -39,6 +38,7 @@ public class AdminUI extends JFrame{
 		addBrand = new JButton("Add Brand");
 		addBrand.setBounds(50,30, 30, 20);
 		this.add(addBrand,BorderLayout.EAST);
+		
 		addProducts();
 		addBrand();
 		VerifieStores();
@@ -54,7 +54,7 @@ public class AdminUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				AddProductUI addP= new AddProductUI(adminControl);
-				addP.adding();
+				
 			}
 		});
 	}

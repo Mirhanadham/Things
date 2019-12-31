@@ -25,6 +25,7 @@ public class AddProductUI extends JFrame {
 	public AddProductUI(Admin_Controller control)
 	{
 		this.adminCon=control;
+		adding();
 
 	
 	}
@@ -85,21 +86,12 @@ public class AddProductUI extends JFrame {
 				double value=Double.parseDouble( priceField.getText());
 				
 				adminCon.addProduct_Handler(pName, cat, value);
+				add.setEnabled(false);
 				
 				
 			}
 		});
 	}
 
-	public static void main(String []args)
-	{
-		ProductInventory in = new ProductInventory();
-		BrandFunctions funcs = new BrandFunctions();
-		Brand_Controller brandCon= new Brand_Controller(funcs);
-		Product_Controller control = new Product_Controller(in);
-		
-		//AddProductUI ui=new AddProductUI(control);
-		//ui.adding();
-		
-	}
+	
 }

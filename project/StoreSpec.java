@@ -13,19 +13,18 @@ public abstract class StoreSpec {
     	ONLINE,OFFLINE
     }
     public String location;
-  
-
-	public Type type;
+    public Type type;
     public int id;
-   int storeOwnerID;
-   public int getStoreOwnerID() {
+    public int storeOwnerID;
+   
+
+    public int getStoreOwnerID() {
  		return storeOwnerID;
  	}
 
  	public void setStoreOwnerID(int storeOwnerID) {
  		this.storeOwnerID = storeOwnerID;
  	}
-    
     public void setName(String name) {
         this.name = name;
     }
@@ -62,7 +61,6 @@ public abstract class StoreSpec {
 	}
 
 	
-
 
 
 

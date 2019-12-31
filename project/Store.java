@@ -1,8 +1,6 @@
 package project;
 
-
 public class Store extends StoreSpec {
-
 
 	public Store(String name, int id,Type type, String location,int soID )
 	{

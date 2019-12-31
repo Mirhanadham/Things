@@ -22,7 +22,7 @@ public class DisplayUsers extends JFrame {
 		
 		for(PersonalInfo info:users)
 		{
-			display.append("Email:"+info.getEmail()+ " Name: "+info.getName()+" Age:"+info.getAge()+" Gender: "+info.getGender()+"\n");
+			display.append("ID: "+info.getId()+" Email:"+info.getEmail()+ " Name: "+info.getName()+" Age:"+info.getAge()+" Gender: "+info.getGender()+"\n");
 		}
 		this.add(display);
 		this.setSize(1000,500);
@@ -31,11 +31,5 @@ public class DisplayUsers extends JFrame {
 	}
 	
 
-	public static void main(String []args)
-	{
-		BrandFunctions funs= new BrandFunctions();
-		new DisplayBrands(funs);
-	}
+	
 }
-
-

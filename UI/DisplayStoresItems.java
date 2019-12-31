@@ -21,6 +21,9 @@ public class DisplayStoresItems extends JFrame{
 		
 		productsArea= new JTextArea();
 		productsArea.append("ID   Store Name   Product Name");
+		this.add(productsArea);
+		
+		display();
 		
 		
 	}

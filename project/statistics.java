@@ -8,18 +8,16 @@ import UI.DisplayStoreStat;
 
 public class Statistics {
 
-	Map<Integer ,Integer > view;
+	int views;
 	Map<Integer ,Integer > soldoutProducts;
 	Map<Integer ,Integer > boughtProducts;
 	public Statistics()
 	{
-		view=new HashMap();
+		this.views=0;
 		soldoutProducts=new HashMap();
 		boughtProducts=new HashMap();
 	}
-	public Map<Integer ,Integer > getViews() {
-		return view;
-	}
+	
 	public Map<Integer ,Integer > getSoldoutProducts() {
 		return soldoutProducts;
 	}
@@ -27,37 +25,50 @@ public class Statistics {
 		return boughtProducts;
 	}
 	// di hyt3mlha calll gwa function aly btlist alproducts ll user//done
-	public void updateViews(int productID){
-			Integer value = view.get(productID);
-			value=value+1;
-			view.put(productID, value);
+	public void updateViews(){
+		views+=1;
 		
 	}
 	
 
+	public int getViews()
+	{
+		return views;
+	}
 	//di hyt3mlha call lma product yb2a sold out
 	public void updateSoldoutProducts(int productID){
 		
 			Integer value = soldoutProducts.get(productID);
-			value=value+1;
-			soldoutProducts.put(productID, value);
+			if(value==null)
+			{
+				soldoutProducts.put(productID, 1);
+			}
+			
 		
 		
 	}
 	
 	//di han3mlha call lma 7ad yshtry product mn store 
-	public void updateBoughtProducts(int productID){
+	public void updateBoughtProducts(int storeID,int quantity){
 	
-			Integer value = boughtProducts.get(productID);
-			value=value+1;
-			boughtProducts.put(productID, value);
+			Integer value = boughtProducts.get(storeID);
+			if(value==null)
+			{
+				boughtProducts.put(storeID, quantity);
+			}
+			else
+			{
+				value=value+quantity;
+				boughtProducts.put(storeID,value);
+			}
+
 		
 	}
 	
 	public void print(int ID) {
 			
-		Integer views = view.get(ID); 
-		System.out.println("product with ID="+ID+"  Number of views = " + views);
+		
+		System.out.println("Number of views = " + views);
 		
 	
 		
@@ -74,4 +85,3 @@ public class Statistics {
 	}
 	
 }
-

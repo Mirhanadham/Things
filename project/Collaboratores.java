@@ -2,22 +2,25 @@ package project;
 
 public class Collaboratores {
 
-	String userName;
+	int colID;
 	int storeOwnerID;
 	int storeID;
 	
-	public Collaboratores(String userName, int storeOwnerID, int storeID) {
+	public Collaboratores(int id, int storeOwnerID, int storeID) {
 		// TODO Auto-generated constructor stub
-		this.userName=userName;
+		this.colID=id;
 		this.storeID=storeID;
 		this.storeOwnerID=storeOwnerID;
 	}
-	public String getUserName() {
-		return userName;
+	
+	public int getColID() {
+		return colID;
 	}
-	public void setUserName(String userID) {
-		this.userName = userID;
+
+	public void setColID(int colID) {
+		this.colID = colID;
 	}
+
 	public int getStoreOwnerID() {
 		return storeOwnerID;
 	}

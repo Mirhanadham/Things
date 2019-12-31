@@ -29,7 +29,7 @@ public class VerifiedUI extends JFrame{
 		
 		JLabel storeId= new JLabel("Store ID: ");
 		JTextField storeIdField= new JTextField(15);
-		JLabel storeOwnerId= new JLabel("Store owner name: ");
+		JLabel storeOwnerId= new JLabel("Store owner ID: ");
 		JTextField storeOwnerIdField= new JTextField(15);
 		
 		JButton verifie= new JButton("Verifie");
@@ -81,8 +81,8 @@ public class VerifiedUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String storeId=storeIdField.getText();
-				String storeOwnerId= storeOwnerIdField.getText();
+				int storeId=Integer.parseInt(storeIdField.getText());
+				int storeOwnerId=Integer.parseInt( storeOwnerIdField.getText());
 				
 				
 				adminCon.verifie(storeId, storeOwnerId);
@@ -94,8 +94,8 @@ public class VerifiedUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String storeId=storeIdField.getText();
-				String storeOwnerId= storeOwnerIdField.getText();
+				int storeId=Integer.parseInt(storeIdField.getText());
+				int storeOwnerId= Integer.parseInt(storeOwnerIdField.getText());
 				
 				
 				adminCon.notVerifie(storeId, storeOwnerId);

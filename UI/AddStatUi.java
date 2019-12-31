@@ -98,4 +98,3 @@ public class AddStatUi extends JFrame {
 	}
 
 }
-

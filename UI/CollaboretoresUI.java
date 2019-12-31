@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controllers.SO_Controller;
+import project.PersonalInfo;
 import project.UserFunctionalities;
 
 public class CollaboretoresUI extends JFrame {
@@ -24,17 +26,16 @@ public class CollaboretoresUI extends JFrame {
 	public CollaboretoresUI(SO_Controller soCon, UserFunctionalities user,int storeOwnerID) {
 		// TODO Auto-generated constructor stub
 
-		
+		soCon.listUsers();
 		this.soCon=soCon;
 		this.user=user;
-		JLabel colID= new JLabel("collaborater Name: ");
+		JLabel colID= new JLabel("ID: ");
 		JTextField ColID= new JTextField(15);
 		JLabel storeID = new JLabel("Store ID: ");
 		JTextField store= new JTextField(15);
 		JButton add= new JButton("Add");
 	    add.setBounds(50,30, 30, 20);
-	    JButton view= new JButton("View users who can be collaboraters");
-	    view.setBounds(50,30, 30, 20);
+	    
 
 	    JPanel leftPanel= new JPanel(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -57,8 +58,7 @@ public class CollaboretoresUI extends JFrame {
 	    this.setSize(1000, 500);
 	    this.add(leftPanel);
 	    this.setVisible(true);
-	    
-	    leftPanel.add(view,constraints);
+	   
 		  
 		   
 	    this.setSize(1000, 500);
@@ -70,11 +70,20 @@ public class CollaboretoresUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String colID=ColID.getText();
+				int colID=Integer.parseInt(ColID.getText());
 				int storeID= Integer.parseInt(store.getText());
+				PersonalInfo info=user.getUserWithID(colID);
+				if(info==null)
+				{
+					JOptionPane.showMessageDialog(null, "You have entered a wrong user ID. Please choose one from the list.","CollabMsg",JOptionPane.INFORMATION_MESSAGE);
+
+				}
 	
+				else
+				{
 				soCon.addCollaberator(colID, storeID, storeOwnerID,user);
-				
+				}
+				add.setEnabled(false);
 			}
 		});
  
@@ -82,19 +91,9 @@ public class CollaboretoresUI extends JFrame {
 		
 	
 	
-	    view.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-
-			soCon.listUsers();
-			
-		}
-	});
+	    
 	}
 	
 	
 
 }
-
-

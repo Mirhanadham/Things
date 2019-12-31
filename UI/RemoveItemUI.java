@@ -25,8 +25,8 @@ public class RemoveItemUI extends JFrame {
 		JTextField PID= new JTextField(15);
 		
 		
-		JButton add= new JButton("Add");
-	    add.setBounds(50,30, 30, 20);
+		JButton remove= new JButton("Remove");
+	    remove.setBounds(50,30, 30, 20);
 		
 		JPanel leftPanel= new JPanel(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -39,14 +39,12 @@ public class RemoveItemUI extends JFrame {
 	    leftPanel.add(PID,constraints);
 	    constraints.gridx=0;
 	    constraints.gridy=1;
-	   
-	    
-	    leftPanel.add(add,constraints);
+	    leftPanel.add(remove,constraints);
 	    this.add(leftPanel);
 	    this.setSize(1000,500);
 	    this.setVisible(true);
 	    
-	    add.addActionListener(new ActionListener() {
+	    remove.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -59,5 +57,3 @@ public class RemoveItemUI extends JFrame {
 			
 	    }
 	}
-
-	

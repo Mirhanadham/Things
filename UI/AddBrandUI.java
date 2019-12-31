@@ -75,12 +75,5 @@ public class AddBrandUI extends JFrame{
 		
 	}
 	
-	public static void main(String [] args)
-	{
-		BrandFunctions funcs= new BrandFunctions();
-		Brand_Controller con= new Brand_Controller(funcs);
-		//new AddBrandUI(con);
-		
-	}
 
 }

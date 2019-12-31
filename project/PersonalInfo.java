@@ -3,6 +3,9 @@ package project;
 
 public  interface PersonalInfo {
 	
+     boolean getFirtsOrder();
+     void setFirstOrder(boolean firstOrder);
+     
 	 String getName() ;
 	 void setName(String name);
 	
@@ -24,11 +27,8 @@ public  interface PersonalInfo {
 
 	 UserType getType() ;
 	 void setType(UserType type);
-	
-	
-	  boolean isCollaborater() ;
-
-
-		 void setCollaborater(boolean collaborater) ;
 	 
+	 boolean isCollaborater() ;
+	 void setCollaborater(boolean collaborater) ;
+	
 }

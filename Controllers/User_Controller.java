@@ -23,7 +23,7 @@ public class User_Controller {
 	public void registrationHandler(String name, String pass, String email, String gender, int age, UserType type)
 	{
 		
-		User user= new User(name, pass, email, gender, age, type,false);
+		User user= new User(name, pass, email, gender, age, type);
 
 		userfuncs.register(user);
 	}

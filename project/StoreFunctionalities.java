@@ -2,13 +2,13 @@ package project;
 
 import java.util.ArrayList;
 
-
-
 public class StoreFunctionalities {
 	ArrayList<StoreSpec> storesList ;
 	ArrayList<StoreSpec> storesQueingList ;
 	ArrayList<IStoreProduct> storeProductList;
+	ArrayList<IStoreProduct> storeProductListRemoved;
 	ArrayList<Collaboratores> Collaboratores;
+	ArrayList<History> history;
 	
 	
 	
@@ -18,31 +18,25 @@ public class StoreFunctionalities {
 		storesQueingList =new ArrayList<StoreSpec>();
 		storeProductList= new ArrayList<IStoreProduct>();
 		Collaboratores =new ArrayList<Collaboratores>();
-	}
-	public IStoreProduct getProduct(int id)
-	{
+		 history= new ArrayList<History>();
+		  storeProductListRemoved=new ArrayList<IStoreProduct>();
 		
-		for(int i=0;i<storeProductList.size();i++)
-		{
-			if(storeProductList.get(i).getId()==id)
-				return storeProductList.get(i);
-		}
-		return null;
-		 
+		Store store1= new Store("store1",0,StoreSpec.Type.ONLINE,"sdfgsdfgs",0);
+		storesList.add(store1);
+		Store store2= new Store("store2",1,StoreSpec.Type.ONLINE,"sdfgsdfgs",0);
+		storesList.add(store2);
 	}
-	public void addItem(IStoreProduct storeproduct)
-	{  	
-		storeproduct.setId(storeProductList.size());
-		storeProductList.add(storeproduct);
-		System.out.println("prodcut id "+storeproduct.getId());
+	
+	public void addItem(IStoreProduct storeprsoduct)
+	{ 
+		
+		storeprsoduct.setId(storeProductList.size());
+		storeProductList.add(storeprsoduct);
+		System.out.println(storeprsoduct.getId()+" "+storeprsoduct.getProductId()+" "+storeprsoduct.getStoreId());
+		History his=new History(storeprsoduct.getStoreId(),storeprsoduct.getId(),"item added",history.size());
+		history.add(his);
 		
 	}
-	public void addCollaberator(Collaboratores col)
-	{
-		
-		Collaboratores.add(col);
-	}
-//create message box
 	public void addStoretoQueingList(StoreSpec storespec )  {
 
 		storespec.setId(storesList.size());
@@ -50,6 +44,28 @@ public class StoreFunctionalities {
 		System.out.println("store is waiting to be verified by admin");
 		
 	}
+	
+	public void addCollaberator(Collaboratores col)
+	{
+		
+		Collaboratores.add(col);
+		History his=new History(col.storeID,col.colID,"Collaborater added",history.size());
+		history.add(his);
+	}
+
+	
+	public String getStoreName(int sid)
+	{
+		StoreSpec store= storesList.get(sid);
+		return store.getName();
+	}
+	
+	public void updateQuantity(int pid, int quantity)
+	{
+		 storeProductList.get(pid).setQuantity(quantity);
+	}
+	
+	
 	
 	public void removeItem (IStoreProduct storeproduct) {	
 		
@@ -64,6 +80,9 @@ public class StoreFunctionalities {
 		}
 		if (found ==true)
 		{
+			History his=new History(storeproduct.getStoreId(),storeproduct.getId(),"item removed",history.size());
+			history.add(his);
+			storeProductListRemoved.add(storeproduct);
 			storeProductList.remove(storeproduct.getId());
 			System.out.println("ID Removed");
 		}
@@ -71,39 +90,41 @@ public class StoreFunctionalities {
 			System.out.println("not found");
 		
 	}
-	
 	public ArrayList<StoreSpec> getstoreQueingList()
 	{
 		return storesQueingList ;
 	}
+	
 
 	public ArrayList<StoreSpec> getstoreList()
 	{
 		return storesList ;
 	}
-		
-	public String getStoreName(int sid)
+	
+	public ArrayList<Collaboratores> getCollaborators()
 	{
-		StoreSpec store= storesList.get(sid);
-		return store.getName();
+		return Collaboratores;
 	}
+		
+	
 		
 	public ArrayList<IStoreProduct> itemsList()
 	{
 		return storeProductList;
 	}
 
-	public void verifie(String storeId,String storeOwnerId)
+	public void verifie(int storeId,int storeOwnerId)
 	{
 		
-		int indexOfVerifiedStore=storesQueingList.indexOf(storeId);
-		StoreSpec store=storesQueingList.get(indexOfVerifiedStore);
+		
+		StoreSpec store=storesQueingList.get(storeId);
 		storesList.add(store);
-		storesQueingList.remove(indexOfVerifiedStore);
+		int removeindex= storesQueingList.indexOf(store);
+		storesQueingList.remove(removeindex);
 		
 	}
 
-	public void notVerifie(String storeId,String storeOwnerId)
+	public void notVerifie(int storeId,int storeOwnerId)
 	{
 		int indexOfVerifiedStore=storesQueingList.indexOf(storeId);
 		storesQueingList.remove(indexOfVerifiedStore);
@@ -114,15 +135,48 @@ public class StoreFunctionalities {
 	{
 		stat.print(storeId);
 	}
-	
+		
+	public IStoreProduct getItemWithID(int id)
+	{
+		for(IStoreProduct prod:storeProductList)
+		{
+			if(prod.getId()==id)
+				return prod;
+		}
+		return null;
+	}
+
+	public void undoHistory (int actionId) {
+		for(History history:history )
+		{
+			if(history.getActionID()==actionId)
+			{
+				if(history.actionTaken=="item added")
+				{
+					int index=storeProductList.indexOf(history.getID());
+					IStoreProduct store=storeProductList.get(index);
+					removeItem(store);
+				}
+				else if (history.actionTaken=="Collaborater added")
+				{
+					int index=Collaboratores.indexOf(history.getID());
+					Collaboratores.remove(index);
+				}
+				else
+				{
+					int index=storeProductListRemoved.indexOf(history.getID());
+					IStoreProduct store=storeProductListRemoved.get(index);
+					addItem(store);
+					
+				}
+					
+			}
+		}
+	}
+
+	public ArrayList<History> getHistory()
+	{
+		return history;
+	}
+
 }
-
-
-
-	
-	
-
-	
-
-
-	

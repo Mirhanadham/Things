@@ -69,6 +69,7 @@ public class AddStoreUI extends JFrame{
 				String Location= LocationField.getText();
 				project.StoreSpec.Type Type =(project.StoreSpec.Type) type.getSelectedItem();
 				soCon.addStore(name, Type, Location, SOId);
+				add.setEnabled(false);
 				
 			}
 		});

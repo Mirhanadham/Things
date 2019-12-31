@@ -2,14 +2,15 @@ package Controllers;
 
 import java.util.ArrayList;
 
-import project.DisplayVerifie;
+
+import UI.DisplayVerifie;
 import project.StoreFunctionalities;
 import project.StoreSpec;
 
 public class Verified_Controller {
 
 	StoreFunctionalities storeFun ;
-	DisplayVerifie display;	
+	
 	
 	public Verified_Controller(StoreFunctionalities storeFun) {
 		// TODO Auto-generated constructor stub
@@ -18,17 +19,17 @@ public class Verified_Controller {
 
 	public void listOfStoresWaiting()
 	{
-		display=new DisplayVerifie(  storeFun);
+		new DisplayVerifie(storeFun);
 	}
 
-	public void verifie(String storeId,String storeOwnerId)
+	public void verifie(int storeId,int storeOwnerId)
 	{
 		
 		storeFun.verifie(storeId, storeOwnerId);
 		
 	}
 
-	public void notVerifie(String storeId,String storeOwnerId)
+	public void notVerifie(int storeId,int storeOwnerId)
 	{
 		storeFun.notVerifie(storeId, storeOwnerId);
 		

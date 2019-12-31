@@ -3,22 +3,19 @@ package project;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class User implements PersonalInfo {
 
 	private String name;
 	private String password;
 	private String email;
 	private String gender;
-	
-
-
 	private int age ;
 	private int id;
 	private UserType type;
+	private boolean firstOrder;
 	private boolean collaborater;
 	
-	public User(String name, String pass, String email, String gender, int age, UserType type,boolean col)
+	public User(String name, String pass, String email, String gender, int age, UserType type)
 	{
 		this.setName(name);
 		this.setEmail(email);
@@ -27,7 +24,8 @@ public class User implements PersonalInfo {
 		this.setGender(gender);	
 		this.setId(0);
 		this.setType(type);
-		this.setCollaborater(col);
+		this.setFirstOrder(true);
+		this.setCollaborater(false);
 		
 	}
 
@@ -36,14 +34,7 @@ public class User implements PersonalInfo {
 		
 	}
 
-	public boolean isCollaborater() {
-		return collaborater;
-	}
 
-
-	public void setCollaborater(boolean collaborater) {
-		this.collaborater = collaborater;
-	}
 	@Override
 	public String getName() {
 		return name;
@@ -125,6 +116,32 @@ public class User implements PersonalInfo {
 	@Override
 	public void setType(UserType type) {
 		this.type=type;
+	}
+
+
+	@Override
+	public boolean getFirtsOrder() {
+		return firstOrder;
+	}
+
+
+	@Override
+	public void setFirstOrder(boolean firstOrder) {
+		this.firstOrder=firstOrder;
+		
+	}
+
+
+	@Override
+	public boolean isCollaborater() {
+		return collaborater;
+	}
+
+
+	@Override
+	public void setCollaborater(boolean collaborater) {
+		this.collaborater=collaborater;
+		
 	}
 
 

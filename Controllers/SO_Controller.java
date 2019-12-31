@@ -1,19 +1,26 @@
 package Controllers;
 
-
-import project.StoreSpec.Type;
-import project.Collaboratores;
+import UI.DisplayStores;
+import project.Cart;
 import project.IBrand;
 import project.IStoreProduct;
+import project.PersonalInfo;
 import project.Statistics;
+import project.StoreFunctionalities;
+import project.StoreProduct;
 import project.UserFunctionalities;
 
 public class SO_Controller {
 	Product_Controller prodCon;
 	Brand_Controller brandCon;
-	Store_Controller storeCon;
 	Collaborater_Controller colCon;
-	 public SO_Controller(Product_Controller prodcontrol,Brand_Controller brandcontrol,Store_Controller storecontrol,Collaborater_Controller colCon) {
+	public Store_Controller storeCon;
+	
+	
+	//Cart_Controller cartCon;
+
+	
+	public SO_Controller(Product_Controller prodcontrol,Brand_Controller brandcontrol,Store_Controller storecontrol,Collaborater_Controller colCon) {
 		this.prodCon=prodcontrol;
 		this.brandCon=brandcontrol;
 		this.storeCon=storecontrol;
@@ -32,15 +39,21 @@ public class SO_Controller {
 		storeCon.addStore_Handler(name,type,location,soID);
 		
 	}
-	public void addCollaberator(String userName,int storeID,int storeOwnerID,UserFunctionalities user)
+
+//	public void addNewCart(int cartId)
+//	{
+//		cartCon.addCart(cartId);
+//	}
+	public void addCollaberator(int userID,int storeID,int storeOwnerID,UserFunctionalities user)
 	{
-		storeCon.addCollaberator(userName, storeID, storeOwnerID,user);
+		storeCon.addCollaberator(userID, storeID, storeOwnerID,user);
 		
 	}
 	public void listUsers()
 	{
 		colCon.listUsers();
 	}
+
 	public void viewProducts()
 	{
 		prodCon.viewProducts();
@@ -50,10 +63,12 @@ public class SO_Controller {
 		IStoreProduct storeProduct=storeCon.getProduct(productID);
 		storeCon.removeProduct_Handler(storeProduct);
 	}
+	
 	public void viewBrands()
 	{
 		brandCon.viewBrands();
 	}
+	
 	public void viewStat(int storeId,Statistics stat)
 	{
 		storeCon.diplaystat(storeId,stat);
@@ -78,9 +93,22 @@ public class SO_Controller {
 		return prodCon.getProductName(pid);
 	}
 	
-
-	public void viewStores()
+	public void viewStoresProducts()
 	{
-		
+		storeCon.viewStoreProducts();
+	}
+	
+
+	public void viewStores(int userID,boolean collab)
+	{
+		storeCon.viewStore(userID, collab);
+	}
+	public void history(int storeID)
+	{
+		storeCon.viewHistory(storeID);
+	}
+	public void undoAction(int actionID)
+	{
+		storeCon.undo(actionID);	
 	}
 }

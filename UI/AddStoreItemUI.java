@@ -33,7 +33,7 @@ public class AddStoreItemUI extends JFrame {
 		soCon.viewBrands();
 		
 		
-		
+		additem();
 		
 	}
 	public void additem()
@@ -116,6 +116,7 @@ public class AddStoreItemUI extends JFrame {
 				
 					JOptionPane.showMessageDialog(null, "Wrong Product or Brand ID please choose one from the list.","ProductMsg",JOptionPane.INFORMATION_MESSAGE);
 				}
+				add.setEnabled(false);
 			}
 		});
 	   

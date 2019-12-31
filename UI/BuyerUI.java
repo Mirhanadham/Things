@@ -8,27 +8,31 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Controllers.Buyer_Controller;
+import Controllers.Cart_Controller;
+import Controllers.Store_Controller;
+import project.Cart;
 import project.PersonalInfo;
-import project.ProductInventory;
 
 public class BuyerUI extends JFrame {
 	PersonalInfo user;
-	 Buyer_Controller buyerCon;
-	ProductInventory productInvt;
-	 
+	Store_Controller storeCon;
+	Cart_Controller cartCon;
+	
 	JButton addToCart;
 	JButton viewCart;
 	JButton checkoutOrder;
 	JButton surfProducts;
 	JPanel pane;
 	
-	public BuyerUI(PersonalInfo buyer, Buyer_Controller control)
+	public BuyerUI(PersonalInfo buyer, Store_Controller  storecontrol, Cart_Controller cartcontrol)
 	{
 		this.user=buyer;
-		this.buyerCon=control;
+		this.storeCon=storecontrol;
+		this.cartCon=cartcontrol;
+		//cartCon.addCart(user.getId());
 		this.setSize(1000,500);
 		this.setTitle("Buyer");
 		this.setVisible(true);
@@ -56,7 +60,14 @@ public class BuyerUI extends JFrame {
 		constrains.gridy=3;
 		pane.add(checkoutOrder,constrains);
 		
+		
+		
 		this.add(pane);
+		viewProducts();
+		additemToCart();
+		viewCart();
+		checkout();
+		
 	
 		
 	}
@@ -67,6 +78,7 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				storeCon.viewStoreProducts();
 				
 			}
 		});
@@ -77,7 +89,8 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				storeCon.viewStoreProducts();
+				new AddProductToCartUI(cartCon,user);
 				
 			}
 		});
@@ -89,7 +102,10 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				Cart cart=cartCon.getCartByID(user.getId());
+					new DisplayCartItems(cart);
+				
+
 				
 			}
 		});
@@ -101,8 +117,9 @@ public class BuyerUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				Cart cart=cartCon.getCartByID(user.getId());
+				new CheckOutUI(cart, user);
+				cartCon.deleteCart(cart);
 			}
 		});
 	}

@@ -2,7 +2,6 @@ package Controllers;
 
 import java.util.ArrayList;
 
-import project.DisplayVerifie;
 import project.IBrand;
 import project.ProductSpec;
 
@@ -11,6 +10,7 @@ public class Admin_Controller {
 	Brand_Controller brandCon;
 	Verified_Controller verCon;
 	Stat_Controller statCon;
+	
 	public Admin_Controller(Product_Controller podController, Brand_Controller brandController,Verified_Controller verCon)
 	{
 		this.verCon=verCon;
@@ -31,14 +31,12 @@ public class Admin_Controller {
 	{
 		verCon.listOfStoresWaiting();
 	}
-	
-	public void notVerifie(String storeId,String storeOwnerId)
+	public void notVerifie(int storeId,int storeOwnerId)
 	{
 		verCon.notVerifie(storeId, storeOwnerId);
 		
 	}
-
-	public void verifie(String storeId,String storeOwnerId)
+	public void verifie(int storeId,int storeOwnerId)
 	{
 		
 		verCon.verifie(storeId, storeOwnerId);
@@ -57,6 +55,7 @@ public class Admin_Controller {
 	{
 		statCon.avg(map);
 	}
+	
 	public void viewProducts()
 	{
 		prodCon.viewProducts();

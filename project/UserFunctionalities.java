@@ -42,12 +42,41 @@ public class UserFunctionalities {
 			if (((us.getEmail().equals(name)) || (us.getName().equals(name)))&& us.getPassword().equals(pass))
 			{
 				return us;
-			}
-			
-
-				
+			}		
 		}
 		return null;
+	}
+	public PersonalInfo getUserWithID(int id)
+	{
+		for(PersonalInfo info:users)
+		{
+			if(info.getId()==id)
+			{
+				return info;
+			}
+		}
+		return null;
+	}
+	public ArrayList<PersonalInfo> getUsers()
+	{
+		return users;
+	}
+	
+	public void setCollaboratortoTrue(int userID)
+	{
+		PersonalInfo user=getUserWithID(userID);
+		if(user!=null)
+		{
+			user.setCollaborater(true);
+		}
+	}
+	public void setCollaboratortoFalse(int userID)
+	{
+		PersonalInfo user=getUserWithID(userID);
+		if(user!=null)
+		{
+			user.setCollaborater(false);
+		}
 	}
 	
 

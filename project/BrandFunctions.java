@@ -6,11 +6,11 @@ public class BrandFunctions {
 	ArrayList<IBrand> brands;
 	public BrandFunctions() {
 		brands = new ArrayList<IBrand>();
-		Brand brand1= new Brand("Tshirt","clothes","david");
+		Brand brand1= new Brand("Gucci","clothes","Gucci");
 		addBrand(brand1);
-		Brand brand2= new Brand("pants","clothes","hanem");
+		Brand brand2= new Brand("Chanel","clothes","Coco Chanel");
 		addBrand(brand2);
-		Brand brand3= new Brand("pants","clothes","dave");
+		Brand brand3= new Brand("H&M","clothes","H&M");
 		addBrand(brand3);
 		
 	}

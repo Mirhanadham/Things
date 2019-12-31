@@ -27,5 +27,8 @@ public  interface PersonalInfo {
 
 	 UserType getType() ;
 	 void setType(UserType type);
+	 
+	 boolean isCollaborater() ;
+	 void setCollaborater(boolean collaborater) ;
 	
 }

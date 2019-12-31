@@ -24,14 +24,14 @@ public class Order {
 		this.offers= new Offers();
 	}
 
-	public void calculateTotalPrice()
+	public void calculateTotalPrice(double total)
 	{
-		double total=0;
-		ArrayList<CartItem> items= cart.getCartItems();
-		for(CartItem item: items)
-		{
-			total+=item.getPrice();
-		}
+		
+//		ArrayList<CartItem> items= cart.getCartItems();
+//		for(CartItem item: items)
+//		{
+//			total=total+(item.getPrice()*item.getQuantity());
+//		}
 		if(user.getType().equals(UserType.STOREOWNER))
 		{
 			double storeOwnerDisc= total*offers.getStoreOwnerDiscount();

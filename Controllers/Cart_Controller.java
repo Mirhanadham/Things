@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import project.Cart;
 import project.IStoreProduct;
+import project.StoreOffer;
 
 public class Cart_Controller {
 	ArrayList<Cart> cartsList;
@@ -15,9 +16,16 @@ public class Cart_Controller {
 	}
 	public void addCart(int cartId)
 	{
-		Cart cart= new Cart(cartId);
-		cartsList.add(cart);
-		System.out.println(cart.getCartID());
+		for (Cart cart:cartsList)
+		{
+			if(cart.getCartID()==cartId)
+			{
+				return;
+			}
+		}
+		Cart basket= new Cart(cartId);
+		cartsList.add(basket);
+		System.out.println("Cart num:" +basket.getCartID());
 	}
 	
 	public boolean addToCart(int cartId,int pid, int quantity)
@@ -29,10 +37,27 @@ public class Cart_Controller {
 		
 		if(quantitySuitable == true && prod!= null)
 		{
-			cartsList.get(cartId).addItemToCart(pid, quantity,prod.getPrice());
+			//cartsList.get(cartId).addItemToCart(pid, quantity,prod.getPrice());
+			for(Cart cart:cartsList)
+			{
+				if(cart.getCartID()==cartId)
+				{
+					StoreOffer offer=storeCon.getStoreOffer(prod.getStoreId());
+					double price=prod.getPrice();
+					if(offer!=null)
+					{
+						double disc=offer.getOfferPercentage();
+						double discPrice=prod.getPrice()*disc;
+						price=prod.getPrice()-discPrice;
+					}
+					cart.addItemToCart(pid, quantity, price);
+				}
+			}
 			int quant= storeCon.getStoreProdWithID(pid).getQuantity();
 			int newquant=quant-quantity;
 			storeCon.updateQuantity(pid, newquant);
+			storeCon.updateBoughtProducts(prod.getStoreId(), quantity);
+			storeCon.checkSoldOut(pid);
 			added=true;
 		}
 		
@@ -53,11 +78,19 @@ public class Cart_Controller {
 	public boolean checkQuantity(int prodID,int quantity)
 	{
 		IStoreProduct prod= storeCon.getStoreProdWithID(prodID);
-		if(prod!=null &&(prod.getQuantity()<= quantity))
+		if(prod!=null &&(prod.getQuantity()>= quantity))
+		{
 			return true;
+		}
 		else 
+		{
 			return false;
+		}
 		
+	}
+	public void deleteCart(Cart cart)
+	{
+		cart.deleteCart();
 	}
 	
 

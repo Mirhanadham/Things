@@ -21,28 +21,27 @@ import javax.swing.JTextField;
 import Controllers.Admin_Controller;
 import Controllers.Brand_Controller;
 import Controllers.Cart_Controller;
+import Controllers.Collaborater_Controller;
 import Controllers.Product_Controller;
 import Controllers.SO_Controller;
+import Controllers.Stat_Controller;
 import Controllers.Store_Controller;
 import Controllers.User_Controller;
+import Controllers.Verified_Controller;
+import javafx.scene.layout.Border;
+import project.AdminStatistics;
 import project.BrandFunctions;
 import project.Cart;
 import project.PersonalInfo;
 import project.ProductInventory;
+import project.Statistics;
 import project.StoreFunctionalities;
 import project.UserFunctionalities;
 import project.UserType;
 
-public class GUImain {
-	
-	private JFrame home; //first window to sign in/up
-	private JPanel homeLoginPanel;
-	private JPanel homeSignupPanel;
-	private JLabel welcome;
-	private Container homeContainer;
-	
+public class GUImain extends JFrame {
+	private JLabel welcome;	
 	private JButton LogIn;
-	
 	private JButton UserSignUp;
 	
 	PersonalInfo user;
@@ -57,36 +56,45 @@ public class GUImain {
 	StoreFunctionalities storeFunc;
 	Store_Controller storeCon;
 	Cart_Controller cartCon;
-	
+	Verified_Controller verCon;
+	Collaborater_Controller colCon;
+	Statistics stat;
+	Stat_Controller statCon;
+	AdminStatistics ADStat;
+
 	
 	
 	public GUImain()
 	{
+		this.stat=new Statistics ();
+		this.ADStat= new AdminStatistics();
+		this.statCon=new Stat_Controller(stat,ADStat);
 		this.userFunc= new UserFunctionalities();
+		this.colCon=new Collaborater_Controller(userFunc);
 		this.userHandler= new User_Controller(userFunc);
 		this.productIn= new ProductInventory();
 		this.brandFunc= new BrandFunctions();
 		this.storeFunc= new StoreFunctionalities();
+		this.verCon=new Verified_Controller(storeFunc);
 		this.brandCon= new Brand_Controller(brandFunc);
 		this.podCon= new Product_Controller(productIn);
-		this.adminCon= new Admin_Controller(podCon, brandCon);
-		this.storeCon= new Store_Controller(storeFunc);
+		this.adminCon= new Admin_Controller(podCon, brandCon,verCon,statCon);	
+		this.storeCon= new Store_Controller(storeFunc,stat);
 		this.cartCon= new Cart_Controller(storeCon);
 		
-		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon);
+		
+		this.storeOwnerCon= new SO_Controller(podCon,brandCon,storeCon,colCon);
 		
 	
 		
 		
 		
-		home= new JFrame("Hello");
-		home.setSize(1000, 500);
-		home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		home.setLocationRelativeTo(null);
-		home.setVisible(true);
+		this.setTitle("Home");
+		this.setSize(1000,500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		homeContainer=home.getContentPane();
-		homeContainer.setLayout(new GridLayout(1,2));
+		
+		
 		
 		welcome= new JLabel("Welcome !!");
 		welcome.setFont(new Font("Lucida Grande", Font.BOLD, 35));
@@ -99,24 +107,21 @@ public class GUImain {
 		UserSignUp.setBounds(50,30, 30, 20);
 		
 		
+		JPanel pane= new JPanel(new GridBagLayout());
+		GridBagConstraints constrains= new GridBagConstraints();
+		constrains.anchor= GridBagConstraints.WEST;
+		constrains.insets= new Insets(10,10,10,10);
+		constrains.gridx=0;
+		constrains.gridy=0;
+		pane.add(LogIn,constrains);
+		constrains.gridy=1;
+		pane.add(UserSignUp,constrains);
+
 		
+		this.add(pane,BorderLayout.EAST);
+		this.add(welcome,BorderLayout.WEST);
+		this.setVisible(true);
 		
-		GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-		
-		homeLoginPanel= new JPanel();
-		homeLoginPanel.setBounds(50,50,200,300);
-		homeLoginPanel.add(LogIn,gbc);
-		homeLoginPanel.setVisible(true);
-		homeSignupPanel= new JPanel();
-		homeSignupPanel.setBounds(50,50,200,300);
-		homeSignupPanel.add(UserSignUp);
-		
-		homeSignupPanel.setVisible(true);
-		
-		home.add(welcome,BorderLayout.NORTH);
-		home.add(homeLoginPanel,BorderLayout.WEST);
-		home.add(homeSignupPanel,BorderLayout.EAST);
 		
 	    LogIn.addActionListener(new ActionListener()
 		{
@@ -196,9 +201,11 @@ public class GUImain {
 				String password= passField.getText();
 				 user= userHandler.loginHadler(name, password);
 				
+		
 				 if (user==null)
 					{
-						JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
+		
+					 JOptionPane.showMessageDialog(null, "You Can't LogIn at the moment. Your password, name or email is incorrect.","LoginMsg",JOptionPane.INFORMATION_MESSAGE);
 
 					}
 					else if(user.getType().equals(UserType.ADMIN))
@@ -210,13 +217,21 @@ public class GUImain {
 					else if (user.getType().equals(UserType.STOREOWNER))
 					{
 						 System.out.println(user.getId());
-						SOUI storeOwner= new SOUI(storeOwnerCon,user,cartCon);
+						// cartCon.addCart(user.getId());
+						SOUI storeOwner= new SOUI(storeOwnerCon,user,cartCon,userFunc,stat);
 					}
 					else
 					{
 						 System.out.println(user.getId());
-						 	cartCon.addCart(user.getId());
-							BuyerUI buyer= new BuyerUI(user,storeCon,cartCon);
+						 	if(user.isCollaborater())
+						 	{
+						 		//cartCon.addCart(user.getId());
+						 		SOUI collab=new SOUI(storeOwnerCon,user,cartCon,userFunc,stat);
+						 	}
+						 	else
+						 	{	//cartCon.addCart(user.getId());
+						 		BuyerUI buyer= new BuyerUI(user,storeCon,cartCon);
+						 	}
 					}
 				 				
 				

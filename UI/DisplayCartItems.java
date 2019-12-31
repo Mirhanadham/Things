@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DisplayCartItems extends JFrame {
 	Cart cart;
-	
+	double price=0;
 	JTextArea display;
 	public DisplayCartItems(Cart cartobj) {
 		this.cart=cartobj;
@@ -27,6 +27,7 @@ public class DisplayCartItems extends JFrame {
 		for(CartItem item:cartitems)
 		{
 			display.append(item.getItemID()+"   "+item.getQuantity()+"   "+item.getPrice()+"\n");
+			price+=(item.getPrice()*item.getQuantity());
 		}
 		
 		this.add(display);

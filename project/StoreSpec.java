@@ -15,9 +15,16 @@ public abstract class StoreSpec {
     public String location;
     public Type type;
     public int id;
-    public boolean verified;
+    public int storeOwnerID;
    
 
+    public int getStoreOwnerID() {
+ 		return storeOwnerID;
+ 	}
+
+ 	public void setStoreOwnerID(int storeOwnerID) {
+ 		this.storeOwnerID = storeOwnerID;
+ 	}
     public void setName(String name) {
         this.name = name;
     }
@@ -53,13 +60,7 @@ public abstract class StoreSpec {
 		this.id = id;
 	}
 
-	public boolean isVerified() {
-		return verified;
-	}
-
-	public void setVerified(boolean verified) {
-		this.verified = verified;
-	}
+	
 
 
 

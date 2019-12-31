@@ -32,6 +32,7 @@ public class AddProductToCartUI extends JFrame {
 	public AddProductToCartUI(Cart_Controller cartcontrol,PersonalInfo info) {
 		this.cartCon=cartcontrol;
 		this.user=info;
+		cartCon.addCart(user.getId());
 		
 		prodIDlabel= new JLabel("Enter Store Product ID: ");
 		quantLabel= new JLabel("Enter Quantity: ");
@@ -86,6 +87,7 @@ public class AddProductToCartUI extends JFrame {
 			{
 				JOptionPane.showMessageDialog(null, "Either the Quantity or the Product you have entered is wrong.","CartMsg",JOptionPane.INFORMATION_MESSAGE);
 			}
+			
 				
 			}
 		});

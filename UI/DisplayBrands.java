@@ -32,9 +32,5 @@ public class DisplayBrands extends JFrame {
 	}
 	
 
-	public static void main(String []args)
-	{
-		BrandFunctions funs= new BrandFunctions();
-		new DisplayBrands(funs);
-	}
+	
 }

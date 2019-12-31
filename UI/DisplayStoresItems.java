@@ -20,7 +20,10 @@ public class DisplayStoresItems extends JFrame{
 		this.setVisible(true);
 		
 		productsArea= new JTextArea();
-		productsArea.append("ID   Store Name   Product Name");
+		productsArea.append("ID   Store Name   Product Name \n");
+		this.add(productsArea);
+		
+		display();
 		
 		
 	}
@@ -33,7 +36,7 @@ public class DisplayStoresItems extends JFrame{
 		{
 			String storeName=storeFuncs.getStoreName(product.getStoreId());
 			
-			productsArea.append(product.getId()+"   "+storeName+"   "+product.getProductName());
+			productsArea.append(product.getId()+"   "+storeName+"   "+product.getProductName()+"\n");
 		}
 	}
 	

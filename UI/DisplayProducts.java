@@ -8,12 +8,15 @@ import javax.swing.JTextArea;
 
 import project.ProductInventory;
 import project.ProductSpec;
+import project.Statistics;
 
 public class DisplayProducts extends JFrame {
 	ProductInventory products;
+	
 	public DisplayProducts(ProductInventory in)
 	{
 		this.products=in;
+		
 		
 		JTextArea display= new JTextArea();
 		
@@ -25,6 +28,7 @@ public class DisplayProducts extends JFrame {
 		for(ProductSpec product:pList)
 		{
 			display.append(product.getId()+ "  "+product.getName()+"   "+product.getCategory()+"   "+product.getPrice()+"\n");
+			
 		}
 		
 		this.setSize(1000,500);

@@ -13,6 +13,7 @@ public class User implements PersonalInfo {
 	private int id;
 	private UserType type;
 	private boolean firstOrder;
+	private boolean collaborater;
 	
 	public User(String name, String pass, String email, String gender, int age, UserType type)
 	{
@@ -24,6 +25,7 @@ public class User implements PersonalInfo {
 		this.setId(0);
 		this.setType(type);
 		this.setFirstOrder(true);
+		this.setCollaborater(false);
 		
 	}
 
@@ -126,6 +128,19 @@ public class User implements PersonalInfo {
 	@Override
 	public void setFirstOrder(boolean firstOrder) {
 		this.firstOrder=firstOrder;
+		
+	}
+
+
+	@Override
+	public boolean isCollaborater() {
+		return collaborater;
+	}
+
+
+	@Override
+	public void setCollaborater(boolean collaborater) {
+		this.collaborater=collaborater;
 		
 	}
 

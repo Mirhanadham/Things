@@ -32,6 +32,7 @@ public class BuyerUI extends JFrame {
 		this.user=buyer;
 		this.storeCon=storecontrol;
 		this.cartCon=cartcontrol;
+		cartCon.addCart(user.getId());
 		this.setSize(1000,500);
 		this.setTitle("Buyer");
 		this.setVisible(true);
@@ -58,6 +59,8 @@ public class BuyerUI extends JFrame {
 		pane.add(viewCart,constrains);
 		constrains.gridy=3;
 		pane.add(checkoutOrder,constrains);
+		
+		
 		
 		this.add(pane);
 		viewProducts();
@@ -115,7 +118,10 @@ public class BuyerUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Cart cart=cartCon.getCartByID(user.getId());
-				new CheckOutUI(cart, user);
+				DisplayCartItems dis=new DisplayCartItems(cart);
+				System.out.println(dis.price);
+				new CheckOutUI(cart, user,dis.price);
+				cartCon.deleteCart(cart);
 			}
 		});
 	}

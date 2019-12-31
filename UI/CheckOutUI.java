@@ -26,11 +26,13 @@ public class CheckOutUI extends JFrame {
 	JLabel totalPricelabel;
 	JTextArea totalPrice;
 	JButton checkout;
+	double total;
 	
-	public CheckOutUI(Cart cart, PersonalInfo info)
+	public CheckOutUI(Cart cart, PersonalInfo info,double total)
 	{
 		this.cart=cart;
 		this.user=info;
+		this.total=total;
 		
 		address= new JLabel("Address: ");
 		addressField= new JTextField(30);
@@ -63,6 +65,8 @@ public class CheckOutUI extends JFrame {
 		this.setTitle("Checkout");
 		this.setVisible(true);
 		
+		checkout();
+		
 	}
 	
 	public void checkout()
@@ -73,12 +77,19 @@ public class CheckOutUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String address= addressField.getText();
 				Order order= new Order(address,cart,user);
+				order.calculateTotalPrice(total);
+				System.out.println(order.getTotalPrice());
 				totalPrice.append(Double.toString(order.getTotalPrice()));
 				JFrame orderDetails= new JFrame("Order Details");
 				orderDetails.setSize(1000,500);
 				JTextArea details= new JTextArea();
 				details.append("ID:  "+order.getOrderId()+"\n"+"Total Price:   "+order.getTotalPrice()+"\n");
 				details.append("Address:   "+order.getAddress()+"\n"+"Date:   "+order.getDate()+"\n");
+				cart.deleteCart();
+				orderDetails.add(details);
+				orderDetails.setVisible(true);
+				
+				
 				
 			}
 		});

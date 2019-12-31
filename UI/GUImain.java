@@ -1,11 +1,9 @@
 package UI;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +26,6 @@ import Controllers.Stat_Controller;
 import Controllers.Store_Controller;
 import Controllers.User_Controller;
 import Controllers.Verified_Controller;
-import javafx.scene.layout.Border;
 import project.AdminStatistics;
 import project.BrandFunctions;
 import project.Cart;

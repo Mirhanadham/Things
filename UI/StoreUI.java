@@ -96,6 +96,7 @@ public class StoreUI extends JFrame {
 		viewStatistics();
 		viewHistory();
 		undo();
+		removeItem();
 		
 		
 	}
@@ -165,7 +166,7 @@ public class StoreUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				undoUI undo =new undoUI(soCon);
+				undoUI undo =new undoUI(soCon,userFunc);
 			}
 		});
 	}

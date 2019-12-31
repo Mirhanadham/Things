@@ -107,8 +107,8 @@ public class SO_Controller {
 	{
 		storeCon.viewHistory(storeID);
 	}
-	public void undoAction(int actionID)
+	public void undoAction(int actionID,UserFunctionalities user)
 	{
-		storeCon.undo(actionID);	
+		storeCon.undo(actionID,user);	
 	}
 }

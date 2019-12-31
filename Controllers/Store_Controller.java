@@ -39,8 +39,8 @@ public class Store_Controller {
 	public void addCollaberator(int colID,int storeID,int storeOwnerID,UserFunctionalities user)
 	{
 		Collaboratores col=new Collaboratores(colID,storeOwnerID,storeID);
-		storeFuncs.addCollaberator(col);
-		user.setCollaboratortoTrue(colID);
+		storeFuncs.addCollaberator(col,user);
+		
 		
 	}
 	public void viewStoreProducts()
@@ -89,8 +89,8 @@ public class Store_Controller {
 	{
 		new DisplayHistory(storeID,storeFuncs);
 	}
-	public void undo(int actionID)
+	public void undo(int actionID,UserFunctionalities user)
 	{
-		storeFuncs.undoHistory(actionID);
+		storeFuncs.undoHistory(actionID,user);
 	}
 }

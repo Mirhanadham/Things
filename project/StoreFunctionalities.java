@@ -45,10 +45,11 @@ public class StoreFunctionalities {
 		
 	}
 	
-	public void addCollaberator(Collaboratores col)
+	public void addCollaberator(Collaboratores col,UserFunctionalities user)
 	{
 		
 		Collaboratores.add(col);
+		user.setCollaboratortoTrue(col.colID);
 		History his=new History(col.storeID,col.colID,"Collaborater added",history.size());
 		history.add(his);
 	}
@@ -146,7 +147,7 @@ public class StoreFunctionalities {
 		return null;
 	}
 
-	public void undoHistory (int actionId) {
+	public void undoHistory (int actionId,UserFunctionalities user) {
 		for(History history:history )
 		{
 			if(history.getActionID()==actionId)
@@ -160,6 +161,7 @@ public class StoreFunctionalities {
 				else if (history.actionTaken=="Collaborater added")
 				{
 					int index=Collaboratores.indexOf(history.getID());
+					user.setCollaboratortoFalse(Collaboratores.get(index).colID);
 					Collaboratores.remove(index);
 				}
 				else

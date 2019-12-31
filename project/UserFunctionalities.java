@@ -71,6 +71,10 @@ public class UserFunctionalities {
 		user.setCollaborater(true);
 	}
 	
-
+	public void setCollaboratortoFalse(int userID)
+	{
+		PersonalInfo user=getUserWithID(userID);
+		user.setCollaborater(false);
+	}
 	
 }

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controllers.SO_Controller;
+import project.UserFunctionalities;
 
 public class undoUI extends JFrame {
 
@@ -20,10 +21,11 @@ public class undoUI extends JFrame {
 	JPanel leftPane;
 	JTextField actionID;
 	SO_Controller soCon;
-	
-	public undoUI(SO_Controller control)
+	UserFunctionalities user;
+	public undoUI(SO_Controller control,UserFunctionalities user)
 	{
 		this.soCon=control;
+		this.user=user;
 		undo= new JButton("Undo");
 		undo.setBounds(50,30, 30, 20);
 		actionID= new JTextField(15);
@@ -52,7 +54,7 @@ public class undoUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int actionid= Integer.parseInt(actionID.getText());
-				soCon.undoAction(actionid);
+				soCon.undoAction(actionid, user);
 			}
 		});
 	}

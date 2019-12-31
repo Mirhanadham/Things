@@ -27,8 +27,7 @@ public class AddStatUi extends JFrame {
 		
 		
 		
-		JButton Views= new JButton("Views");
-		Views.setBounds(50,30, 30, 20);
+		
 		
 		JButton SoldOut= new JButton("SoldOut Products");
 		SoldOut.setBounds(50,30, 30, 20);
@@ -47,31 +46,15 @@ public class AddStatUi extends JFrame {
 	    constraints.gridx = 0;
 	    constraints.gridy = 0;    
 	   
-	    leftPanel.add(Views,constraints);
+	   
 	    this.add(leftPanel);
 	    this.setSize(1000,500);
 	    this.setVisible(true);
-	    this.add(Views,BorderLayout.WEST);
 	    leftPanel.add(SoldOut,constraints);
-	    this.add(leftPanel);
-	    this.setSize(1000,500);
-	    this.setVisible(true);
 	    this.add(SoldOut,BorderLayout.CENTER);
 	    leftPanel.add(boughtProducts,constraints);
-	    this.add(leftPanel);
-	    this.setSize(1000,500);
-	    this.setVisible(true);
 	    this.add(SoldOut,BorderLayout.EAST);
-	    Views.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				int map=1;
-				AddStatCalcuUI addUi= new AddStatCalcuUI (adminControl,map);
-				
-			}
-		});
+	   
 	    
 	    SoldOut.addActionListener(new ActionListener() {
 			
